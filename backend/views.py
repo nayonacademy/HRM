@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import *
 from .forms.branch_form import BranchForm
 from .forms.department_form import DepartmentForm
+from .forms.designation_form import DesignationForm
 
 # Create your views here.
 # Start home method
@@ -82,7 +83,43 @@ def department_delete(request,pk):
 
 #Start Designation method    
 def designationView(request):
-    return render(request,'backend/designation/designation.html')
+        designation_all_data=DesignationModel.objects.all()
+        if request.method =='POST':
+                designation=DesignationForm(request.POST)
+                if designation.is_valid():
+                        designation.save()
+                        messages.success(request,'designation Form submission successful')
+                        return HttpResponseRedirect(reverse('designation'))
+                
+        else:
+                designation=DesignationForm()
+        context={
+                'form':designation,
+                'designation':designation_all_data
+        }        
+        return render(request,'backend/designation/designation.html',context) 
+
+def designation_delete(request,pk):
+        designation_delete_data=get_object_or_404(DesignationModel,pk=pk)
+        designation_delete_data.delete()
+        messages.info(request,'designation Deleted')
+        return HttpResponseRedirect(reverse('designation')) 
+
+def designation_update(request,pk):
+        designation_edit_data=get_object_or_404(DesignationModel,pk=pk)
+        if request.method == 'POST':
+                form=DesignationForm(request.POST or None,instance=designation_edit_data)
+                if form.is_valid():
+                        form.save()
+                        messages.success(request,"designation data updated successfully")
+                        return HttpResponseRedirect(reverse('designation'))
+        else:
+                form=DesignationForm(instance=designation_edit_data)
+        context={
+                'form':form,
+                
+        }        
+        return render(request,'backend/designation/designation_edit.html',context)
 #End Designation method
 
 #Start Designation method    
