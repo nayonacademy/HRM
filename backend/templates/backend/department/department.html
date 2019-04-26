@@ -56,16 +56,12 @@
                                                   {% csrf_token %}
                                                     <div class="form-group">
                                                       <label for="exampleInputEmail1">Department Name</label>
-                                                      <input type="text" class="form-control" placeholder="Department name....">
+                                                      {{form.department_name}}
                                                     </div>
                                           
                                                       <div class="form-group">
                                                         <label>Status</label>
-                                                        <select class="form-control">
-                                                            <option>Active </option>
-                                                            <option>Inactive </option>
-        
-                                                        </select>
+                                                        {{form.department_status}}
                                                     </div>
                                                     
                                           
@@ -93,7 +89,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td rowspan="2"> 1 </td>
                                                     <td> Computer </td>
                                                     <td> <span class="label label-sm label-success"> Active </span> </td>
@@ -108,9 +104,34 @@
                                                         <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>
                                                         </button>
                                                     </td>
+                                                </tr> -->
+                                              
+                                                {% for department_data in department %}
+                                                <tr>
+                                                    <td>{{forloop.counter}}</td>
+                                                    <td>{{department_data.department_name}}</td>
+                                                    <td>
+                                                        {% if department_data.department_status == "Active" %}
+                                                         <span style="color:royalblue">{{department_data.department_status}}</span>
+                                                        {% else %}
+                                                          <span style="color:blueviolet">{{department_data.department_status}}</span>
+                                                         {% endif %} 
+                                                     </td>
+                                                    <td>
+                                                        <button type="button" class="btn purple mt-ladda-btn ladda-button btn-circle" data-style="slide-left">
+                                                            <span class="ladda-label">Edit</span>
+                                                        <span class="ladda-spinner"></span>
+                                                       </button>
+                                                       
+                                                        <a href="{% url 'department_delete' department_data.id %}" onclick="return confirm('Are You Sure?')" 
+                                                        class="btn red mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
+                                                            <span class="ladda-label">Delete</span>
+                                                        <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                               
-                                                
+                                                {% endfor %}
                                                
                                             </tbody>
                                         </table>
