@@ -19,7 +19,7 @@ def branchView(request):
                 branch=BranchForm(request.POST)
                 if branch.is_valid():
                         branch.save()
-                        messages.success(request,'Branchform submission successful')
+                        messages.success(request,'Branch Form submission successful')
                         return HttpResponseRedirect(reverse('branch'))
                 
         else:
@@ -43,7 +43,7 @@ def branch_update(request,pk):
                 if form.is_valid():
                         form.save()
                         messages.success(request,"Branch data updated successfully")
-                        return redirect('branch_update',pk=pk)
+                        return HttpResponseRedirect(reverse('branch'))
         else:
                 form=BranchForm(instance=branch_edit_data)
         context={
@@ -93,3 +93,15 @@ def employeeReportView(request):
 def employeeAddView(request):
     return render(request,'backend/employee/createemployee.html')
 #End Designation method 
+# start attendance report method
+def atttendanceReportView(request):
+        return render(request,'backend/attendance/attendance_report.html')
+def addAttendanceView(request):
+        return render(request,'backend/attendance/add_attendance.html')
+def leaveTypeView(request):
+        return render(request,'backend/leave/leave_type.html') 
+def addLeaveView(request):
+        return render(request,'backend/leave/add_leave.html')               
+def generalsettingsView(request):
+        return render(request,'backend/settings/general_settings.html')        
+                     

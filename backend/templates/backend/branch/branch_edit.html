@@ -8,77 +8,84 @@
             <!-- BEGIN THEME PANEL -->
             <!-- END THEME PANEL -->
             <!-- BEGIN PAGE BAR -->
-            <div class="page-bar">
-                <ul class="page-breadcrumb">
-                    <li>
-                        <a href="index.html">Home</a>
-                        <i class="fa fa-circle"></i>
-                    </li>
-                    <li>
-                        <span>Tables</span>
-                    </li>
-                </ul>
-               
-            </div>
-            <!-- END PAGE BAR -->
-            <!-- BEGIN PAGE TITLE-->
-            <h3 class="page-title"> Branch Datatables
-                <small>This is Branch area.</small>
-            </h3>
+            <h3 class="page-title">
+                Order View <small>view order details</small>
+                </h3>
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="index.html">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="#">eCommerce</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="#">Order View</a>
+                        </li>
+                    </ul>
+                  
+                </div>
 <div class="row">
 
+ 
+    
+
+
+
     <!-- BEGIN BORDERED TABLE PORTLET-->
-    <div class="portlet light portlet-fit bordered">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="icon-bubble font-dark"></i>
-                    <span class="caption-subject font-dark bold uppercase">Branch Table</span>
+            <div class="col-md-10" style="margin-top: 25px;">
+              <!-- BEGIN ALERTS PORTLET-->
+              <div class="portlet purple box">
+                <div class="portlet-title">
+                  <div class="caption">
+                    <i class="fa fa-cogs"></i>Branch Edit Form
+                  </div>
+                  <div class="tools">
+                    <a href="javascript:;" class="collapse" data-original-title="" title="">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+                    </a>
+                    <a href="javascript:;" class="reload" data-original-title="" title="">
+                    </a>
+                    <a href="javascript:;" class="remove" data-original-title="" title="">
+                    </a>
+                  </div>
                 </div>
-                <div class="actions">
-                    <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fa fa-plus"></i>
-                        Edit Branch
-                      </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Edit Branch</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                            <form action="" method="POST">
-                              {% csrf_token %}
-                                <div class="form-group">
-                                  <label for="exampleInputEmail1">Branch Name</label>
-                                  {{form.branch_name}}
-                                  <!-- <input type="text" class="form-control" placeholder="Branch name...."> -->
-                                </div>
-                      
-                                  <div class="form-group">
-                                    <label>Status</label>
-                                    {{form.branch_status}}
-                                </div>
-                                
-                      
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                              <button type="submit" name="submit" class="btn btn-success">Save</button>
-                            </div>
+                <div class="portlet-body" style="display: block;">
+                  <form action="" method="POST">
+                      <div class="form-body">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Branch Name</label>
+                            {{form.branch_name}}
+                            <!-- <input type="text" class="form-control" placeholder="Branch name...."> -->
                           </div>
-                          </form>
+                      
+                            <div class="form-group">
+                              <label>Status</label>
+                              {{form.branch_status}}
+                          </div>
                         </div>
-                      </div>
+                  <div class="form-actions right">
+                
+                    <button type="submit" class="btn purple mt-ladda-btn">Submit</button>
+                  </div>
+
+                </form>
+              </div>
                 </div>
-            </div>
+              </div>
+              <!-- END ALERTS PORTLET-->
             </div>
 
 </div>
 
 </div>
 </div>
+
+
 
 {% endblock %}
