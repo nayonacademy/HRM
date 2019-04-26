@@ -1,4 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
+from django.http import HttpResponse,HttpResponseRedirect
+from django.urls import reverse
+from django.contrib import messages
+from .models import *
+from .forms.branch_form import BranchForm
+from .forms.department_form import DepartmentForm
 
 # Create your views here.
 # Start home method
@@ -8,12 +14,69 @@ def homeView(request):
 
 #Start Branch method    
 def branchView(request):
-    return render(request,'backend/branch/branch.html')
+        branch_all_data=BranchModel.objects.all()
+        if request.method =='POST':
+                branch=BranchForm(request.POST)
+                if branch.is_valid():
+                        branch.save()
+                        messages.success(request,'Branchform submission successful')
+                        return HttpResponseRedirect(reverse('branch'))
+                
+        else:
+                branch=BranchForm()
+        context={
+                'form':branch,
+                'branch':branch_all_data
+        }        
+        return render(request,'backend/branch/branch.html',context) 
+
+def branch_delete(request,pk):
+        branch_delete_data=get_object_or_404(BranchModel,pk=pk)
+        branch_delete_data.delete()
+        messages.info(request,'Branch Deleted')
+        return HttpResponseRedirect(reverse('branch')) 
+
+def branch_update(request,pk):
+        branch_edit_data=get_object_or_404(BranchModel,pk=pk)
+        if request.method == 'POST':
+                form=BranchForm(request.POST or None,instance=branch_edit_data)
+                if form.is_valid():
+                        form.save()
+                        messages.success(request,"Branch data updated successfully")
+                        return redirect('branch_update',pk=pk)
+        else:
+                form=BranchForm(instance=branch_edit_data)
+        context={
+                'form':form,
+                
+        }        
+        return render(request,'backend/branch/branch_edit.html',context)
 #End Branch method 
 
 #Start Department method    
 def departmentView(request):
-    return render(request,'backend/department/department.html')
+        department_all_data=DepartmentModel.objects.all()
+        if request.method =='POST':
+                department=DepartmentForm(request.POST)
+                if department.is_valid():
+                        department.save()
+                        messages.success(request,'Departmentform submission successful')
+                        return HttpResponseRedirect(reverse('department'))
+                
+        else:
+                department=DepartmentForm()
+        context={
+                'form':department,
+                'department':department_all_data
+        }        
+        return render(request,'backend/department/department.html',context) 
+
+def department_delete(request,pk):
+        department_delete_data=get_object_or_404(DepartmentModel,pk=pk)
+        department_delete_data.delete()
+        messages.info(request,'Department Deleted')
+        return HttpResponseRedirect(reverse('department')) 
+
 #End Department method 
 
 
