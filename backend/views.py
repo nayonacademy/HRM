@@ -14,7 +14,7 @@ def homeView(request):
 
 #Start Branch method    
 def branchView(request):
-        branch_all_data=BranchModel.objects.all()
+        branch_all_data= BranchModel.objects.all()
         if request.method =='POST':
                 branch=BranchForm(request.POST)
                 if branch.is_valid():
@@ -92,4 +92,8 @@ def employeeReportView(request):
 #Start Designation method    
 def employeeAddView(request):
     return render(request,'backend/employee/createemployee.html')
+#End Designation method 
+#Start Designation method    
+def employeeattendence(request):
+    return render(request,'backend/employee/attendence.html')
 #End Designation method 

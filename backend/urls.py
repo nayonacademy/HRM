@@ -9,6 +9,7 @@ urlpatterns = [
     path('department_delete/<int:pk>',views.department_delete,name="department_delete"),
     path('designation',views.designationView,name="designation"),
     path('employee',views.employeeReportView,name="employee"),
-    path('addemployee',views.employeeAddView,name="addemployee")
+    path('addemployee',views.employeeAddView,name="addemployee"),
+    path('employeeattendence',views.employeeattendence,name="employeeattendence"),
 
 ]           
