@@ -7,7 +7,7 @@ class BranchForm(forms.ModelForm):
         fields = '__all__'
         choices=(('','--Select--'),('Active','Active'),('Inactive','Inactive'))
         widgets={
-            'branch_name':forms.TextInput(attrs={'class':'form-control'}),
+            'branch_name':forms.TextInput(attrs={'class':'form-control','placeholder':'Branch Name'}),
             'branch_status':forms.Select(attrs={'class':'form-control'},choices=choices)
 
         }

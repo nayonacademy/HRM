@@ -1,5 +1,5 @@
 {% extends 'backend/base.html' %}
-{% block title %}Branch{% endblock title %}
+{% block title %}Designation{% endblock title %}
 {% block content %}
 <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
@@ -9,7 +9,7 @@
             <!-- END THEME PANEL -->
             <!-- BEGIN PAGE BAR -->
             <h3 class="page-title">
-                Branch <small>view branch details</small>
+                Designation <small>view designation details</small>
                 </h3>
                 <div class="page-bar">
                     <ul class="page-breadcrumb">
@@ -19,11 +19,11 @@
                             <i class="fa fa-angle-right"></i>
                         </li>
                         <li>
-                            <a href="#">branch</a>
+                            <a href="#">Designation</a>
                             <i class="fa fa-angle-right"></i>
                         </li>
                         <li>
-                            <a href="#">edit</a>
+                            <a href="#">Edit</a>
                         </li>
                     </ul>
                   
@@ -41,7 +41,7 @@
               <div class="portlet purple box">
                 <div class="portlet-title">
                   <div class="caption">
-                    <i class="fa fa-cogs"></i>Branch Edit Form
+                    <i class="fa fa-cogs"></i>Designation Edit Form
                   </div>
                   <div class="tools">
                     <a href="javascript:;" class="collapse" data-original-title="" title="">
@@ -55,26 +55,34 @@
                   </div>
                 </div>
                 <div class="portlet-body" style="display: block;">
-                  <form action="" method="POST">
-                      <div class="form-body">
-                          {% csrf_token %}
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Branch Name</label>
-                            {{form.branch_name}}
-                            <!-- <input type="text" class="form-control" placeholder="Branch name...."> -->
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Department Name</label>
+                           {{form.department_name}}
+                           <div class="text-danger">{{form.designation_name.errors}}</div>
                           </div>
-                      
+
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Designation Name</label>
+                            {{form.designation_name}}
+                           <div class="text-danger">{{form.designation_name.errors}}</div>
+                          </div>
+                
                             <div class="form-group">
                               <label>Status</label>
-                              {{form.branch_status}}
+                              {{form.designation_status}}
+                              <div class="text-danger">{{form.designation_name.errors}}</div>
                           </div>
-                        </div>
-                  <div class="form-actions right">
+                          
                 
-                    <button type="submit" class="btn purple mt-ladda-btn">Submit</button>
-                  </div>
-
-                </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" name="submit" class="btn btn-success">Save</button>
+                      </div>
+                    </div>
+                    </form>
               </div>
                 </div>
               </div>
