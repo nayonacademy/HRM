@@ -6,6 +6,7 @@ from .models import *
 from .forms.branch_form import BranchForm
 from .forms.department_form import DepartmentForm
 from .forms.designation_form import DesignationForm
+from .forms.leave_form import LeaveTypeForm
 
 # Create your views here.
 # Start home method
@@ -15,7 +16,7 @@ def homeView(request):
 
 #Start Branch method    
 def branchView(request):
-        branch_all_data=BranchModel.objects.all()
+        branch_all_data= BranchModel.objects.all()
         if request.method =='POST':
                 branch=BranchForm(request.POST)
                 if branch.is_valid():
@@ -78,6 +79,22 @@ def department_delete(request,pk):
         messages.info(request,'Department Deleted')
         return HttpResponseRedirect(reverse('department')) 
 
+def department_update(request,pk):
+        department_edit_data=get_object_or_404(DepartmentModel,pk=pk)
+        if request.method == 'POST':
+                form=DepartmentForm(request.POST or None,instance=department_edit_data)
+                if form.is_valid():
+                        form.save()
+                        messages.success(request,"department data updated successfully")
+                        return HttpResponseRedirect(reverse('department'))
+        else:
+                form=DepartmentForm(instance=department_edit_data)
+        context={
+                'form':form,
+                
+        }        
+        return render(request,'backend/department/department_edit.html',context)
+
 #End Department method 
 
 
@@ -130,15 +147,33 @@ def employeeReportView(request):
 def employeeAddView(request):
     return render(request,'backend/employee/createemployee.html')
 #End Designation method 
+
 # start attendance report method
 def atttendanceReportView(request):
         return render(request,'backend/attendance/attendance_report.html')
 def addAttendanceView(request):
         return render(request,'backend/attendance/add_attendance.html')
+
+# Start Leavetype method        
 def leaveTypeView(request):
-        return render(request,'backend/leave/leave_type.html') 
+        all_leave_type = LeaveTypeModel.objects.all()
+        form=LeaveTypeForm()
+        context={
+        'all_leave_type': all_leave_type,
+        'form': form
+
+    }
+        return render(request,'backend/leave/leave_type.html',context) 
+
+#End Leavetype method
 def addLeaveView(request):
         return render(request,'backend/leave/add_leave.html')               
 def generalsettingsView(request):
         return render(request,'backend/settings/general_settings.html')        
                      
+
+#Start Designation method    
+def employeeattendence(request):
+    return render(request,'backend/employee/attendence.html')
+#End Designation method 
+
