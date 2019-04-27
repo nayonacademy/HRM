@@ -55,7 +55,35 @@
             <li class="heading">
                 <h3 class="uppercase">Pages</h3>
             </li>
-        
+            
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">User</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{% url 'employee' %}" class="nav-link ">
+                            <i class="icon-user"></i>
+                            <span class="title">All Employee</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{% url 'addemployee' %}" class="nav-link ">
+                            <i class="icon-user-female"></i>
+                            <span class="title">Add a New Employee</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{% url 'employeeattendence' %}" class="nav-link ">
+                            <i class="icon-user-female"></i>
+                            <span class="title">Employee Attendence</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="nav-item  ">
                 <a href="{% url 'branch' %}" class="nav-link nav-toggle">
                     <i class="icon-basket"></i>

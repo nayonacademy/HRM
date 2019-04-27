@@ -118,10 +118,12 @@
                                                          {% endif %} 
                                                      </td>
                                                     <td>
-                                                        <button type="button" class="btn purple mt-ladda-btn ladda-button btn-circle" data-style="slide-left">
+                                                        <a href="{% url 'department_update' department_data.id %}"
+                                                        class="btn purple mt-ladda-btn ladda-button btn-circle" data-style="slide-left">
                                                             <span class="ladda-label">Edit</span>
                                                         <span class="ladda-spinner"></span>
-                                                       </button>
+                                                        </a>
+                                                       
                                                        
                                                         <a href="{% url 'department_delete' department_data.id %}" onclick="return confirm('Are You Sure?')" 
                                                         class="btn red mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
