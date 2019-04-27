@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import *
 from .forms.branch_form import BranchForm
 from .forms.department_form import DepartmentForm
+from .forms.employee_form import *
 
 # Create your views here.
 # Start home method
@@ -82,21 +83,26 @@ def department_delete(request,pk):
 
 #Start Designation method    
 def designationView(request):
-    return render(request,'backend/designation/designation.html')
+        return render(request,'backend/designation/designation.html')
 #End Designation method
 
 #Start Designation method    
 def employeeReportView(request):
-    return render(request,'backend/employee/employee.html')
+        return render(request,'backend/employee/employee.html')
 #End Designation method 
 #Start Designation method    
 def employeeAddView(request):
-    return render(request,'backend/employee/createemployee.html')
+        basic_info=EmployeePersonalForm()
+        context={
+                'basic_info':basic_info
+        }
+        return render(request,'backend/employee/createemployee.html',context)
 #End Designation method 
 # start attendance report method
 def atttendanceReportView(request):
         return render(request,'backend/attendance/attendance_report.html')
 def addAttendanceView(request):
+        # return HttpResponse('ok')
         return render(request,'backend/attendance/add_attendance.html')
 def leaveTypeView(request):
         return render(request,'backend/leave/leave_type.html') 
