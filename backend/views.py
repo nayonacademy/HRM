@@ -162,6 +162,9 @@ def atttendanceReportView(request):
 def addAttendanceView(request):
         # return HttpResponse('ok')
         return render(request,'backend/attendance/add_attendance.html')
+def newattendence(request):
+        # return HttpResponse('ok')
+        return render(request,'backend/attendance/employeeattendence.html')
 
 # Start Leavetype method        
 def leaveTypeView(request):
@@ -184,5 +187,9 @@ def generalsettingsView(request):
 #Start Designation method    
 def employeeattendence(request):
     return render(request,'backend/employee/attendence.html')
+#End Designation method 
+#Start Designation method    
+def newemployeeattendence(request):
+    return render(request,'backend/employee/employeeattendece.html')
 #End Designation method 
 

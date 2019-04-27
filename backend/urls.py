@@ -22,6 +22,7 @@ urlpatterns = [
     path('atttendance_report',views.atttendanceReportView,name="atttendance_report"),
 
     path('add_attendance',views.addAttendanceView,name="add_attendance"),
+    path('newattendence',views.newattendence,name="newattendence"),
 
     path('leave_type',views.leaveTypeView,name="leave_type"),
     
