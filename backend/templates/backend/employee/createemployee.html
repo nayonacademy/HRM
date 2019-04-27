@@ -108,70 +108,71 @@
                                     </div>
                                  </div>
                                     <div class="form-group">
-                                            <label class="col-md-3 control-label">Father’s Name</label>
+                                            <label class="col-md-3 control-label" for="{{basic_info.father_name.label_for_id}}">{{basic_info.father_name.label}}</label>
                                             <div class="col-md-8">
-                                            <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                             <span class="help-block"></span>
+                                                {{basic_info.father_name}}
+                                                <span class="text-danger">{{basic_info.father_name.errors}}</span>
                                              </div>
                                      </div>
                                     <div class="form-group">
-                                                    <label class="col-md-3 control-label">Mother's Name</label>
+                                                    <label class="col-md-3 control-label" for="{{basic_info.mother_name.label_for_id}}">{{basic_info.mother_name.label}}</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                        <span class="help-block"></span>
+                                                        {{basic_info.mother_name}}
+                                                <span class="text-danger">{{basic_info.mother_name.errors}}</span>
                                                         </div>
                                     </div>
                                
-                                     <div class="form-group">
-                                         <label class="col-md-3 control-label">Mother's Name</label>
-                                             <div class="col-md-8">
-                                                 <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                             <span class="help-block"></span>
-                                             </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="{{basic_info.date_of_birth.label_for_id}}">{{basic_info.date_of_birth.label}}</label>
+                                        <div class="col-md-8">
+                                            {{basic_info.date_of_birth}}
+                                    <span class="text-danger">{{basic_info.date_of_birth.errors}}</span>
+                                            </div>
                                     </div>
                                     <div class="form-group">
-                                            <label class="col-md-3 control-label">Gender</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
-                                                </div>
-                                     </div>
-                                  
-                                     <div class="form-group">
-                                            <label class="col-md-3 control-label">Date Of Birth</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
-                                                </div>
-                                     </div>
-                                  
-                                     <div class="form-group">
-                                            <label class="col-md-3 control-label">Nationality</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
-                                     </div>
-                                     <div class="form-group">
-                                            <label class="col-md-3 control-label">Blood Group</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
-                                                </div>
-                                     </div>
-                                     <div class="form-group">
-                                            <label class="col-md-3 control-label">Riligion</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
-                                                </div>
-                                     </div>
-                                     <div class="form-group">
-                                            <label class="col-md-3 control-label">Marital Status</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
-                                                </div>
-                                     </div>
+                                        <label class="col-md-3 control-label" for="{{basic_info.gender.label_for_id}}">{{basic_info.gender.label}}</label>
+                                        <div class="col-md-8">
+                                            {{basic_info.gender}}
+                                    <span class="text-danger">{{basic_info.gender.errors}}</span>
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="{{basic_info.national_id.label_for_id}}">{{basic_info.national_id.label}}</label>
+                                        <div class="col-md-8">
+                                            {{basic_info.national_id}}
+                                    <span class="text-danger">{{basic_info.national_id.errors}}</span>
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="{{basic_info.nationality.label_for_id}}">{{basic_info.nationality.label}}</label>
+                                        <div class="col-md-8">
+                                            {{basic_info.nationality}}
+                                    <span class="text-danger">{{basic_info.nationality.errors}}</span>
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="{{basic_info.blood_group.label_for_id}}">{{basic_info.blood_group.label}}</label>
+                                        <div class="col-md-8">
+                                            {{basic_info.blood_group}}
+                                    <span class="text-danger">{{basic_info.blood_group.errors}}</span>
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="{{basic_info.religion.label_for_id}}">{{basic_info.religion.label}}</label>
+                                        <div class="col-md-8">
+                                            {{basic_info.religion}}
+                                    <span class="text-danger">{{basic_info.religion.errors}}</span>
+                                            </div>
+                                    </div>
+                                 
+                                 
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="{{basic_info.marital_status.label_for_id}}">{{basic_info.marital_status.label}}</label>
+                                        <div class="col-md-8">
+                                            {{basic_info.marital_status}}
+                                    <span class="text-danger">{{basic_info.marital_status.errors}}</span>
+                                            </div>
+                                    </div>
                                   
                                      <div class="form-group">
                                             <label class="col-md-3 control-label">Photo</label>
@@ -204,35 +205,34 @@
                                     </div>
                                     <hr>
                                     <div class="form-group">
-                                            <label class="col-md-3 control-label">Contact Number</label>
+                                            <label class="col-md-3 control-label"  for="{{contact_info.contact_number.label_for_id}}">{{contact_info.contact_number.label}}</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
+                                                    {{contact_info.contact_number}}
+                                    <span class="text-danger">{{contact_info.contact_number.errors}}</span>
                                             </div>
                                      </div>
                                      <div class="form-group">
-                                            <label class="col-md-3 control-label">Permanent Address</label>
+                                            <label class="col-md-3 control-label" for="{{contact_info.contact_email.label_for_id}}">{{contact_info.contact_email.label}}</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
+                                                    {{contact_info.contact_email}}
+                                                    <span class="text-danger">{{contact_info.contact_email.errors}}</span>
                                             </div>
                                      </div>
                                   
                                      <div class="form-group">
-                                            <label class="col-md-3 control-label">Present  Address</label>
+                                            <label class="col-md-3 control-label" for="{{contact_info.present_address.label_for_id}}">{{contact_info.present_address.label}}</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
+                                                    {{contact_info.present_address}}
+                                                    <span class="text-danger">{{contact_info.present_address.errors}}</span>
                                             </div>
                                      </div>
                                      <div class="form-group">
-                                            <label class="col-md-3 control-label">Email</label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
-                                            </div>
+                                        <label class="col-md-3 control-label" for="{{contact_info.permanent_address.label_for_id}}">{{contact_info.permanent_address.label}}</label>
+                                            <div class="col-md-8">
+                                                {{contact_info.permanent_address}}
+                                                <span class="text-danger">{{contact_info.permanent_address.errors}}</span>
+                                        </div>
                                      </div>
-                                  
                                  
                                  
                             
@@ -247,26 +247,28 @@
                                     <hr>
 
                                     <div class="form-group">
-                                            <label class="col-md-3 control-label">Account No </label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
-                                            </div>
+                                        <label class="col-md-3 control-label" for="{{bank_info.account_no.label_for_id}}">{{bank_info.account_no.label}}</label>
+                                            <div class="col-md-8">
+                                                {{bank_info.account_no}}
+                                                <span class="text-danger">{{bank_info.account_no.errors}}</span>
+                                        </div>
+                                     </div>
+                                 
+                                   
+                                     <div class="form-group">
+                                        <label class="col-md-3 control-label" for="{{bank_info.bank_name.label_for_id}}">{{bank_info.bank_name.label}}</label>
+                                            <div class="col-md-8">
+                                                {{bank_info.bank_name}}
+                                                <span class="text-danger">{{bank_info.bank_name.errors}}</span>
+                                        </div>
                                      </div>
                                      <div class="form-group">
-                                            <label class="col-md-3 control-label">Bank Name </label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
-                                            </div>
-                                      </div>
-                                      <div class="form-group">
-                                                <label class="col-md-3 control-label">Branch Name </label>
-                                                    <div class="col-md-8">
-                                                        <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                    <span class="help-block"></span>
-                                                </div>
-                                      </div>    
+                                        <label class="col-md-3 control-label" for="{{bank_info.branch_name.label_for_id}}">{{bank_info.branch_name.label}}</label>
+                                            <div class="col-md-8">
+                                                {{bank_info.branch_name}}
+                                                <span class="text-danger">{{bank_info.branch_name.errors}}</span>
+                                        </div>
+                                     </div>  
                                
                                    
                                 
@@ -281,27 +283,27 @@
                                     </div>
                                     <hr>
                                     <div class="form-group">
-                                            <label class="col-md-3 control-label">Date Of Joining </label>
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                <span class="help-block"></span>
-                                            </div>
+                                        <label class="col-md-3 control-label" for="{{joing_info.date_of_joining.label_for_id}}">{{joing_info.date_of_joining.label}}</label>
+                                            <div class="col-md-8">
+                                                {{joing_info.date_of_joining}}
+                                                <span class="text-danger">{{joing_info.date_of_joining.errors}}</span>
                                         </div>
-                                        <div class="form-group">
-                                                <label class="col-md-3 control-label">Offer Date </label>
-                                                    <div class="col-md-8">
-                                                        <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                    <span class="help-block"></span>
-                                                </div>
-                                         </div>
-                                         <div class="form-group">
-                                                    <label class="col-md-3 control-label">Confirmation Date</label>
-                                                        <div class="col-md-8">
-                                                            <input type="text" class="form-control input-circle" placeholder="Enter text">
-                                                        <span class="help-block"></span>
-                                                    </div>
-                                         </div>
-                                           
+                                     </div>  
+                               
+                                     <div class="form-group">
+                                        <label class="col-md-3 control-label" for="{{joing_info.date_of_joining.label_for_id}}">{{joing_info.date_of_joining.label}}</label>
+                                            <div class="col-md-8">
+                                                {{joing_info.date_of_joining}}
+                                                <span class="text-danger">{{joing_info.date_of_joining.errors}}</span>
+                                        </div>
+                                     </div> 
+                                     <div class="form-group">
+                                        <label class="col-md-3 control-label" for="{{joing_info.confirmation_date.label_for_id}}">{{joing_info.confirmation_date.label}}</label>
+                                            <div class="col-md-8">
+                                                {{joing_info.confirmation_date}}
+                                                <span class="text-danger">{{joing_info.confirmation_date.errors}}</span>
+                                        </div>
+                                     </div> 
                                        
                                      
                               

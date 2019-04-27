@@ -150,8 +150,14 @@ def employeeReportView(request):
 #Start Designation method    
 def employeeAddView(request):
         basic_info=EmployeePersonalForm()
+        contact_info=EmployeeContactForm()
+        bank_info=EmployeeBankForm()
+        joing_info=EmployeeJoiningForm()
         context={
-                'basic_info':basic_info
+                'basic_info':basic_info,
+                'contact_info':contact_info,
+                'bank_info':bank_info,
+                'joing_info':joing_info
         }
         return render(request,'backend/employee/createemployee.html',context)
 #End Designation method 
