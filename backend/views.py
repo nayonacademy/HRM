@@ -89,6 +89,7 @@ def designationView(request):
 #Start Designation method    
 def employeeReportView(request):
         return render(request,'backend/employee/employee.html')
+        
 #End Designation method 
 #Start Designation method    
 def employeeAddView(request):
