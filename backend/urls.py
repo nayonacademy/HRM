@@ -25,6 +25,8 @@ urlpatterns = [
     path('newattendence',views.newattendence,name="newattendence"),
 
     path('leave_type',views.leaveTypeView,name="leave_type"),
+    path('leave_type_delete/<int:pk>',views.leave_type_delete,name="leave_type_delete"),
+    path('leave_type_update/<int:pk>',views.leave_type_update,name="leave_type_update"),
     
     path('add_leave',views.addLeaveView,name="add_leave"),
     path('general_settings',views.generalsettingsView,name="general_settings"),

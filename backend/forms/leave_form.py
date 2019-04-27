@@ -7,8 +7,8 @@ class LeaveTypeForm(forms.ModelForm):
         fields = '__all__'
         choices=(('','--Select--'),('Active','Active'),('Inactive','Inactive'))
         widgets={
-            'name':forms.TextInput(attrs={'class':'form-control'}),
-            'description':forms.Textarea(attrs={'class':'form-control'}),
-            'status':forms.Select(attrs={'class':'form-control'},choices=choices)
+            'name':forms.TextInput(attrs={'class':'form-control input-circle'}),
+            'description':forms.Textarea(attrs={'class':'form-control input-circle','rows':'4','cols':'5'}),
+            'status':forms.Select(attrs={'class':'form-control input-circle'},choices=choices)
 
         }
