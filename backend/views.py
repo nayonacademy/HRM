@@ -168,14 +168,43 @@ def newattendence(request):
 
 # Start Leavetype method        
 def leaveTypeView(request):
-        all_leave_type = LeaveTypeModel.objects.all()
-        form=LeaveTypeForm()
+        leave_type_all_data= LeaveTypeModel.objects.all()
+        if request.method =='POST':
+                leave_type=LeaveTypeForm(request.POST)
+                if leave_type.is_valid():
+                        leave_type.save()
+                        messages.success(request,'Leave Type Form submission successful')
+                        return HttpResponseRedirect(reverse('leave_type'))
+                
+        else:
+                leave_type=LeaveTypeForm()
         context={
-        'all_leave_type': all_leave_type,
-        'form': form
-
-    }
+                'form':leave_type,
+                'leave_type':leave_type_all_data
+        }        
         return render(request,'backend/leave/leave_type.html',context) 
+
+def leave_type_delete(request,pk):
+        leave_type_delete_data=get_object_or_404(LeaveTypeModel,pk=pk)
+        leave_type_delete_data.delete()
+        messages.info(request,'leave_type Deleted')
+        return HttpResponseRedirect(reverse('leave_type')) 
+
+def leave_type_update(request,pk):
+        leave_type_edit_data=get_object_or_404(LeaveTypeModel,pk=pk)
+        if request.method == 'POST':
+                form=LeaveTypeForm(request.POST or None,instance=leave_type_edit_data)
+                if form.is_valid():
+                        form.save()
+                        messages.success(request,"Leave Type data updated successfully")
+                        return HttpResponseRedirect(reverse('leave_type'))
+        else:
+                form=LeaveTypeForm(instance=leave_type_edit_data)
+        context={
+                'form':form,
+                
+        }        
+        return render(request,'backend/leave/leave_type_edit.html',context) 
 
 #End Leavetype method
 def addLeaveView(request):
