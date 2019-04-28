@@ -393,3 +393,6 @@ def newemployeeattendence(request):
     return render(request,'backend/employee/employeeattendece.html')
 #End Designation method 
 
+
+
+
