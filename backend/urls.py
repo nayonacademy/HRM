@@ -17,7 +17,13 @@ urlpatterns = [
 
     path('employee',views.employeeReportView,name="employee"),
     path('addemployee',views.employeeAddView,name="addemployee"),
+
     path('get_employee',views.getEmployee,name='get_employee'),
+
+    path('transfer',views.transfer,name="transfer"),
+    path('employeetransfer/<int:pk>',views.employeetransfer,name="employeetransfer"),
+
+
     path('get_designation',views.employeeDesination,name='get_designation'),
     path('atttendance_report',views.atttendanceReportView,name="atttendance_report"),
 
@@ -28,6 +34,9 @@ urlpatterns = [
     path('leave_type_update/<int:pk>',views.leave_type_update,name="leave_type_update"),
     
     path('add_leave',views.addLeaveView,name="add_leave"),
+    path('add_leave_delete/<int:pk>',views.add_leave_delete,name="add_leave_delete"),
+    path('add_leave_update/<int:pk>',views.add_leave_update,name="add_leave_update"),
+    
     path('general_settings',views.generalsettingsView,name="general_settings"),
 
     path('employeeattendence',views.employeeattendence,name="employeeattendence")

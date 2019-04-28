@@ -6,6 +6,7 @@ from .models import *
 from .forms.branch_form import BranchForm
 from .forms.department_form import DepartmentForm
 from .forms.leave_form import LeaveTypeForm
+from .forms.add_leave_form import AddLeaveForm
 from .forms.designation_form import DesignationForm
 from .forms.employee_form import *
 from django.core import serializers
@@ -230,8 +231,38 @@ def employeeDesination(request):
         department=request.POST.get('department')
         designation=DesignationModel.objects.filter(department_name=department)
         value=serializers.serialize('json',designation)
-        return HttpResponse(value,content_type='application/json')       
+        return HttpResponse(value,content_type='application/json')   
+
+def transfer(request):
+        employee = EmployeePersonalModel.objects.all()
+        print(employee)
+        context = {
+                "employee" : employee
+        }
+        return render(request,'backend/employee/employeetable.html',context)
+
+def employeetransfer(request,pk):
+        get_employee=get_object_or_404(EmployeePersonalModel,pk=pk)
+        print(get_employee)
+        if request.method == 'POST':
+                print(request.POST)
+                form=EmployeePersonalForm(request.POST,instance=get_employee)
+                print(form)
+                if form.is_valid():
+                        print("Form Validate")
+                        form.save()
+                else:
+                        print("Not Valid")    
+                        print(form.errors)    
+        else:
+            form=EmployeePersonalForm(instance=get_employee)
+            print(form)
+        context={
+                'form':form
+        }
+        return render(request,'backend/employee/transferform.html',context)
 #End Designation method 
+
 
 # start attendance report method
 def atttendanceReportView(request):
@@ -307,8 +338,48 @@ def leave_type_update(request,pk):
         return render(request,'backend/leave/leave_type_edit.html',context) 
 
 #End Leavetype method
+
+#Start AddLeave method
 def addLeaveView(request):
-        return render(request,'backend/leave/add_leave.html')               
+        add_leave_all_data= AddLeaveModel.objects.all()
+        if request.method =='POST':
+                add_leave=AddLeaveForm(request.POST)
+                if add_leave.is_valid():
+                        add_leave.save()
+                        messages.success(request,'Leave Form submission successful')
+                        return HttpResponseRedirect(reverse('add_leave'))
+                
+        else:
+                add_leave=AddLeaveForm()
+        context={
+                'form':add_leave,
+                'add_leave':add_leave_all_data
+        }        
+        return render(request,'backend/leave/add_leave.html',context) 
+
+def add_leave_delete(request,pk):
+        add_leave_delete_data=get_object_or_404(AddLeaveModel,pk=pk)
+        add_leave_delete_data.delete()
+        messages.info(request,'leave Deleted')
+        return HttpResponseRedirect(reverse('add_leave')) 
+
+def add_leave_update(request,pk):
+        add_leave_edit_data=get_object_or_404(AddLeaveModel,pk=pk)
+        if request.method == 'POST':
+                form=AddLeaveForm(request.POST or None,instance=add_leave_edit_data)
+                if form.is_valid():
+                        form.save()
+                        messages.success(request,"Leave data updated successfully")
+                        return HttpResponseRedirect(reverse('add_leave'))
+        else:
+                form=AddLeaveForm(instance=add_leave_edit_data)
+        context={
+                'form':form,
+                
+        }        
+        return render(request,'backend/leave/add_leave_edit.html',context) 
+
+#End AddLeave method
 def generalsettingsView(request):
         return render(request,'backend/settings/general_settings.html')        
                      

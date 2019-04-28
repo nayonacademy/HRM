@@ -1,5 +1,5 @@
 {% extends 'backend/base.html' %}
-{% block title %}Leave{% endblock title %}
+{% block title %}Dashboard Employee{% endblock title %}
 {% block content %}
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
@@ -22,8 +22,8 @@
                     </div>
                     <!-- END PAGE BAR -->
                     <!-- BEGIN PAGE TITLE-->
-                    <h3 class="page-title"> Leave Datatables
-                        <small>This is Leave area.</small>
+                    <h3 class="page-title"> Employee Datatables
+                        <small>This is Employee area.</small>
                     </h3>
                     <!-- END PAGE TITLE-->
                     <!-- END PAGE HEADER-->
@@ -35,18 +35,18 @@
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <i class="icon-bubble font-dark"></i>
-                                        <span class="caption-subject font-dark bold uppercase">Leave Table</span>
+                                        <span class="caption-subject font-dark bold uppercase">Department Table</span>
                                     </div>
                                     <div class="actions">
                                         <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#exampleModal">
                                             <i class="fa fa-plus"></i>
-                                            Create New Leave
+                                            Create New Department
                                           </button>
                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Create Leave</h5>
+                                                  <h5 class="modal-title" id="exampleModalLabel">Create Department</h5>
                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                   </button>
@@ -54,40 +54,14 @@
                                                 <div class="modal-body">
                                                 <form action="" method="POST">
                                                   {% csrf_token %}
-                                                  <div class="form-group">
-                                                    <label for="exampleInputEmail1">Employee Code</label>
-                                                   {{form.employee_code}}
-                                                   <div class="text-danger">{{form.employee_code.errors}}</div>
-                                                  </div>
-
                                                     <div class="form-group">
-                                                      <label for="exampleInputEmail1"> Leave Type</label>
-                                                     {{form.leave_type}}
-                                                     <div class="text-danger">{{form.employee_code.errors}}</div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">From Date </label>
-                                                        {{form.from_date}}
-                                                        <div class="text-danger">{{form.employee_code.errors}}</div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">To Date</label>
-                                                        {{form.to_date}}
-                                                        <div class="text-danger">{{form.employee_code.errors}}</div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Reason</label>
-                                                        {{form.reason}}
-                                                        <div class="text-danger">{{form.employee_code.errors}}</div>
+                                                      <label for="exampleInputEmail1">Department Name</label>
+                                                      {{form.department_name}}
                                                     </div>
                                           
                                                       <div class="form-group">
                                                         <label>Status</label>
-                                                      {{form.status}}
-                                                      <div class="text-danger">{{form.employee_code.errors}}</div>
+                                                        {{form.department_status}}
                                                     </div>
                                                     
                                           
@@ -96,7 +70,6 @@
                                                   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                   <button type="submit" name="submit" class="btn btn-success">Save</button>
                                                 </div>
-                                                
                                               </div>
                                               </form>
                                             </div>
@@ -109,50 +82,39 @@
                                             <thead>
                                                 <tr>
                                                     <th> Id </th>
-                                                    <th> Employee Code </th>
-                                                    <th>  Leave Type </th>
-                                                    <th> From Date </th>
-                                                    <th> To Date </th>
-                                                    <th> Reason </th>
-                                                    <th> Status </th>
-                                                    <th> Action </th>
+                                                    <th> Employee Name </th>
+                                                    <th> Brance Name </th>
+                                                    <th> Department Name </th>
                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {% for add_leave_data in add_leave %}
-                                                <tr>
-                                                    <td>{{forloop.counter}}</td>
-                                                    <td>{{add_leave_data.employee_code}}</td>
-                                                    <td>{{add_leave_data.leave_type}}</td>
-                                                    <td>{{add_leave_data.from_date}}</td>
-                                                    <td>{{add_leave_data.to_date}}</td>
-                                                    <td>{{add_leave_data.reason}}</td>
+                                                <!-- <tr>
+                                                    <td rowspan="2"> 1 </td>
+                                                    <td> Computer </td>
+                                                    <td> <span class="label label-sm label-success"> Active </span> </td>
                                                     <td>
-                                                        {% if add_leave_data.status == "Active" %}
-                                                         <span style="color:royalblue">{{add_leave_data.status}}</span>
-                                                        {% else %}
-                                                          <span style="color:blueviolet">{{add_leave_data.status}}</span>
-                                                         {% endif %} 
-                                                     </td>
-                                                    <td>
-                                                        <a href="{% url 'add_leave_update' add_leave_data.id %}"
-                                                        class="btn purple mt-ladda-btn ladda-button btn-circle" data-style="slide-left">
+                                                        <button type="button" class="btn purple mt-ladda-btn ladda-button btn-circle" data-style="slide-left">
                                                             <span class="ladda-label">Edit</span>
                                                         <span class="ladda-spinner"></span>
-                                                        </a>
-                                                       
-                                                        <a href="{% url 'add_leave_delete' add_leave_data.id %}" onclick="return confirm('Are You Sure?')" 
-                                                        class="btn red mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
+                                                       </button>
+
+                                                        <button type="button" class="btn red mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
                                                             <span class="ladda-label">Delete</span>
                                                         <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>
-                                                        </a>
+                                                        </button>
                                                     </td>
+                                                </tr> -->
+                                              
+                                                {% for i in employee %}
+                                                <tr>
+                                                    <td>{{forloop.counter}}</td>
+                                                    <td><a href="{% url 'employeetransfer' i.pk %}" >{{i.employee_name}}</a></td>
+                                                    <td>{{i.branch}}</td>
+                                                    <td>{{i.department}}</td>
                                                 </tr>
                                               
                                                 {% endfor %}
-                                               
-                                                
                                                
                                             </tbody>
                                         </table>
