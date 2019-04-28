@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('employee',views.employeeReportView,name="employee"),
     path('addemployee',views.employeeAddView,name="addemployee"),
-
+    path('get_employee',views.getEmployee,name='get_employee'),
     path('get_designation',views.employeeDesination,name='get_designation'),
     path('atttendance_report',views.atttendanceReportView,name="atttendance_report"),
 
