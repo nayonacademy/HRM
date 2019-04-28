@@ -125,7 +125,9 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="{{form.date_of_birth.label_for_id}}">{{form.date_of_birth.label}}</label>
                                         <div class="col-md-8">
-                                            {{form.date_of_birth}}
+                                                
+                                             
+                                         <input type="text" class="form-control input-circle" value="{{form.date_of_birth.value|date:"m/d/Y"}}"> 
                                     <span class="text-danger">{{form.date_of_birth.errors}}</span>
                                             </div>
                                     </div>
@@ -201,159 +203,7 @@
 
 </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('#image_upload_preview').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#inputFile").change(function () {
-        readURL(this);
-    });
-
-    function cvURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#cv_upload_preview').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#cv_file").change(function () {
-        cvURL(this);
-    });
-</script>
-
-
-
-<script type="text/javascript">
-
-    $(document).ready(function() {
-      var max_fields      = 10; //maximum input boxes allowed
-      var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-      var add_button      = $(".add_field_button"); //Add button ID
-  
-      var x = 1; //initlal text box count
-      $(add_button).click(function(e){ //on add input button click
-          e.preventDefault();
-          if(x <= max_fields){ //max input box allowed
-              x++; //text box increment
-              $(wrapper).append("<div style='line-height: 40px;'>\
-                            <table style='margin-top: -25px;'>\
-                            <tr>\
-                            <td>\
-                                <input type=\"text\" style='width: 144px;'  id=\"company\"  name=\"name_of_exam[]\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
-                            </td>\
-                            <td>\
-                                <input type=\"text\" style='margin-left:20px;width: 144px;'  id=\"year_of_passing[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
-                            </td>\
-                            <td>\
-                                <input type=\"text\" style='margin-left:26px;width: 144px;'  id=\"board[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
-                            </td>\
-                            <td>\
-                                <input type=\"text\" style='margin-left:26px;width: 144px;' id=\"grade[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
-                            </td>\
-                            </tr>\
-                            <button class='btn btn-danger remove_field' style='width: 40px;margin-left: 670px;margin-bottom: -28px;'><i class=\"fa fa-trash\"></i></button>\
-                            </table>\</div>"); //add input box
-          }
-          else
-          {
-                  swal("Sorry!", "Only 10 Fields Allowed!", "error");
-          }
-      });
-  
-      $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-          e.preventDefault(); $(this).parent('div').remove(); x--;
-      })
-  });
-  </script>
-
-  
-<script type="text/javascript">
-
-    $(document).ready(function() {
-      var max_fields      = 10; //maximum input boxes allowed
-      var wrapper         = $(".input_fields_wrap2"); //Fields wrapper
-      var add_button      = $(".add_field_button2"); //Add button ID
-  
-      var x = 1; //initlal text box count
-      $(add_button).click(function(e){ //on add input button click
-          e.preventDefault();
-          if(x <= max_fields){ //max input box allowed
-              x++; //text box increment
-              $(wrapper).append("<div style='line-height: 40px;'>\
-                            <table style='margin-top: -25px;'>\
-                            <tr>\
-                            <td>\
-                                <input type=\"text\" style='width: 144px;'  id=\"company\"  name=\"company_name[]\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
-                            </td>\
-                            <td>\
-                                <input type=\"text\" style='margin-left:20px;width: 144px;'  id=\"company_address[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
-                            </td>\
-                            <td>\
-                                <input type=\"text\" style='margin-left:26px;width: 144px;'  id=\"designation[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
-                            </td>\
-                            <td>\
-                                <input type=\"text\" style='margin-left:26px;width: 144px;' id=\"duration[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
-                            </td>\
-                            </tr>\
-                            <button class='btn btn-danger remove_field2' style='width: 40px;margin-left: 670px;margin-bottom: -28px;'><i class=\"fa fa-trash\"></i></button>\
-                            </table>\</div>"); //add input box
-          }
-          else
-          {
-                  swal("Sorry!", "Only 10 Fields Allowed!", "error");
-          }
-      });
-  
-      $(wrapper).on("click",".remove_field2", function(e){ //user click on remove text
-          e.preventDefault(); $(this).parent('div').remove(); x--;
-      })
-   
-      $('#designation').html('<option>First Select Departement</option>');
-
-      $('#department').change(function(){
-          var department=$(this).val();
-          var csrf='{{ csrf_token }}';
-          $.ajax({
-              url:"{% url 'get_designation' %}",
-              method:'POST',
-              data:{'department':department,'csrfmiddlewaretoken':csrf},
-              success:function(data)
-              {
-                  if(data.length >0)
-                  {
-                    $('#designation').html('<option>-Select Designation-</option>');
-                    for(i=0;i<data.length;i++)
-                    {
-                        console.log(data[i]);
-                        $('#designation').append("<option value='"+data[i].pk+"'>"+data[i].fields.designation_name+"</option>");
-                    }
-                  }
-                  else
-                  {
-                    $('#designation').html('<option>NO Data Found</option>');
-                  }
-                // 
-               
-              }
-          });
-      });
-  });
-  </script>
 
 
             <!-- END CONTENT -->

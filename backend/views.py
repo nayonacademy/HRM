@@ -237,20 +237,18 @@ def transfer(request):
 
 def employeetransfer(request,pk):
         get_employee=get_object_or_404(EmployeePersonalModel,pk=pk)
-        print(get_employee)
         if request.method == 'POST':
                 print(request.POST)
                 form=EmployeePersonalForm(request.POST,instance=get_employee)
-                print(form)
                 if form.is_valid():
                         print("Form Validate")
                         form.save()
                 else:
                         print("Not Valid")    
                         print(form.errors)    
+        
         else:
             form=EmployeePersonalForm(instance=get_employee)
-            print(form)
         context={
                 'form':form
         }

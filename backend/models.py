@@ -42,7 +42,7 @@ class EmployeePersonalModel(models.Model):
     designation=models.ForeignKey(DesignationModel,on_delete=models.DO_NOTHING, default=1)
     father_name=models.CharField(max_length=40)
     mother_name=models.CharField(max_length=40)
-    date_of_birth=models.DateTimeField(auto_now=False, auto_now_add=False)
+    date_of_birth=models.DateField(auto_now=False, auto_now_add=False)
     gender=models.CharField(max_length=20)
     national_id=models.CharField(max_length=50)
     nationality=models.CharField(max_length=30)
