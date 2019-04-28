@@ -270,17 +270,28 @@ def addAttendanceView(request):
         if request.method == "POST":
                 attendance_form=AttendanceForm(request.POST or None)
                 check_employee=request.POST.getlist('check_employee[]')
+                all_employee=request.POST.getlist('employee_code[]')
+                print('all',all_employee)
                 if attendance_form.is_valid():
                         attendance_id=attendance_form.save()      
                         if  check_employee:
                                 for i in range(len(check_employee)):
+                                        all_employee.remove(check_employee[i])
                                         attendance_child=AttendanceChildModel()
                                         attendance_child.attendance=attendance_id
                                         attendance_child.employee_code=check_employee[i]
                                         attendance_child.status='Present'
                                         attendance_child.save()    
                                      
-                                return HttpResponseRedirect(reverse('add_attendance'))
+                        if all_employee:
+                                for j in range(len(all_employee)):
+                                        attendance_child=AttendanceChildModel()
+                                        attendance_child.attendance=attendance_id
+                                        attendance_child.employee_code=all_employee[j]
+                                        attendance_child.status='Absent'
+                                        attendance_child.save()
+                        messages.success(request,'Attendance Add Operation Successful')                  
+                        return HttpResponseRedirect(reverse('add_attendance'))
                               
         else:
                 attendance_form=AttendanceForm()
