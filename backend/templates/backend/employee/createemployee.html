@@ -56,7 +56,7 @@
                 </div>
                 <div class="portlet-body form" style="display: block;">
            
-                  <form action="" method="POST" class="form-horizontal">
+                  <form action="" method="POST" class="form-horizontal" enctype="multipart/form-data">
                       <div class="form-body">
                           {% csrf_token %}
                          
@@ -177,7 +177,7 @@
                                      <div class="form-group">
                                             <label class="col-md-3 control-label">Photo</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control input-circle" placeholder="Enter text">
+                                                    <input type="file" id="inputFile" class="form-control input-circle" placeholder="Enter text">
                                                 <span class="help-block"></span>
                                             </div>
                                      </div>
@@ -185,7 +185,8 @@
                                      <div class="form-group">
                                             <label class="col-md-3 control-label"></label>
                                                 <div class="col-md-8">
-                                                        <img id="image_upload_preview" src="http://placehold.it/100x100"  alt="your image" />
+                                                        <img id="image_upload_preview" style="width: 102px;
+                                                        height: 102px;" src="http://placehold.it/100x100"  alt="your image" />
                                                 <span class="help-block"></span>
                                      </div>
                                      </div>
@@ -283,25 +284,25 @@
                                     </div>
                                     <hr>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label" for="{{joing_info.date_of_joining.label_for_id}}">{{joing_info.date_of_joining.label}}</label>
+                                        <label class="col-md-3 control-label" for="{{joining_info.date_of_joining.label_for_id}}">{{joining_info.date_of_joining.label}}</label>
                                             <div class="col-md-8">
-                                                {{joing_info.date_of_joining}}
-                                                <span class="text-danger">{{joing_info.date_of_joining.errors}}</span>
+                                                {{joining_info.date_of_joining}}
+                                                <span class="text-danger">{{joining_info.date_of_joining.errors}}</span>
                                         </div>
                                      </div>  
                                
                                      <div class="form-group">
-                                        <label class="col-md-3 control-label" for="{{joing_info.date_of_joining.label_for_id}}">{{joing_info.date_of_joining.label}}</label>
+                                        <label class="col-md-3 control-label" for="{{joining_info.offer_date.label_for_id}}">{{joining_info.offer_date.label}}</label>
                                             <div class="col-md-8">
-                                                {{joing_info.date_of_joining}}
-                                                <span class="text-danger">{{joing_info.date_of_joining.errors}}</span>
+                                                {{joining_info.offer_date}}
+                                                <span class="text-danger">{{joining_info.offer_date.errors}}</span>
                                         </div>
                                      </div> 
                                      <div class="form-group">
-                                        <label class="col-md-3 control-label" for="{{joing_info.confirmation_date.label_for_id}}">{{joing_info.confirmation_date.label}}</label>
+                                        <label class="col-md-3 control-label" for="{{joining_info.confirmation_date.label_for_id}}">{{joining_info.confirmation_date.label}}</label>
                                             <div class="col-md-8">
-                                                {{joing_info.confirmation_date}}
-                                                <span class="text-danger">{{joing_info.confirmation_date.errors}}</span>
+                                                {{joining_info.confirmation_date}}
+                                                <span class="text-danger">{{joining_info.confirmation_date.errors}}</span>
                                         </div>
                                      </div> 
                                        
@@ -326,9 +327,9 @@
                                                         <table class="table address">
                                                                 <thead>
                                                                  <tr class="portlet purple box">
-                                                                    <th style="color: white;">Degree Name</th>
-                                                                    <th style="color: white;">Board Name</th>
-                                                                    <th style="color: white;">Passing Year</th>
+                                                                    <th style="color: white;">Name Of Exam</th>
+                                                                    <th style="color: white;">Year Of Passing</th>
+                                                                    <th style="color: white;">Board</th>
                                                                       <th style="color: white;">Grade</th>
                                                                      
                                                                        <!-- <th style="color: white; text-align: center;"><span> <i class="fa fa-plus-square"></i></span></th> -->
@@ -340,16 +341,16 @@
                                                       <div class="input_fields_wrap">
                                                         <div class="row">
                                                             <div class="col-sm-3">
-                                                                <input type="text"  id="company"  name="dgree" class="form-control input-circle" placeholder="Degree Name" required/>
+                                                                <input type="text"  id="company"  name="name_of_exam[]" class="form-control input-circle" placeholder="Name Of Exam" required/>
                                                             </div>
                                                             <div class="col-sm-3">
-                                                                <input type="text"  id="company"  name="dgree" class="form-control input-circle" placeholder="Degree Name" required/>
+                                                                <input type="text"  id="company"  name="year_of_passing[]" class="form-control input-circle" placeholder="Year Of Passing" required/>
                                                             </div>
                                                             <div class="col-sm-3">
-                                                                <input type="text"   id="company"  name="dgree" class="form-control input-circle" placeholder="Degree Name" required/>
+                                                                <input type="text"   id="company"  name="board[]" class="form-control input-circle" placeholder="Board" required/>
                                                             </div>
                                                             <div class="col-sm-3">
-                                                                <input type="text"   id="company"  name="dgree" class="form-control input-circle" placeholder="Degree Name" required/>
+                                                                <input type="text"   id="company"  name="grade[]" class="form-control input-circle" placeholder="Grade" required/>
                                                             </div>
                                                      
                                                         </div>      
@@ -389,16 +390,16 @@
                                           <div class="input_fields_wrap2">
                                             <div class="row">
                                                 <div class="col-sm-3">
-                                                    <input type="text"  id="company"  name="dgree" class="form-control input-circle" placeholder="Degree Name" required/>
+                                                    <input type="text"  id="company"  name="company_name[]" class="form-control input-circle" placeholder="Company Name" required/>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <input type="text"  id="company"  name="dgree" class="form-control input-circle" placeholder="Degree Name" required/>
+                                                    <input type="text"  id="company"  name="company_address[]" class="form-control input-circle" placeholder="Company Address" required/>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <input type="text"   id="company"  name="dgree" class="form-control input-circle" placeholder="Degree Name" required/>
+                                                    <input type="text"   id="company"  name="designation[]" class="form-control input-circle" placeholder="Designation" required/>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <input type="text"   id="company"  name="dgree" class="form-control input-circle" placeholder="Degree Name" required/>
+                                                    <input type="text"   id="company"  name="duration[]" class="form-control input-circle" placeholder="Duration" required/>
                                                 </div>
                                          
                                             </div>      
@@ -417,7 +418,7 @@
                                     <div class="form-group">
                                             <label class="col-md-3 control-label">CV</label>
                                                 <div class="col-md-8">
-                                                    <input type="file" class="form-control input-circle" placeholder="Enter text">
+                                                    <input type="file" id="cv_file" class="form-control input-circle" name="cv_file" placeholder="Enter text">
                                                 <span class="help-block"></span>
                                             </div>
                                      </div>
@@ -425,67 +426,24 @@
                                      <div class="form-group">
                                             <label class="col-md-3 control-label"></label>
                                                 <div class="col-md-8">
-                                                        <img id="image_upload_preview" src="http://placehold.it/100x100"  alt="your image" />
+                                                        <img id="cv_upload_preview" style="width: 102px;height: 102px;" src="http://placehold.it/100x100"  alt="your image" />
                                                 <span class="help-block"></span>
                                      </div>
                                      </div>
-                                <!-- <style>
-                                    .address th {
-	    background-color: #404e67;
-	    color: white;
-	    text-align: center;
-}
-                                </style>
-                                <table class="table address">
-                                        <tr>
-                                            <th >Name Of Exam </th>
-                                            <th >Year Of Passing</th>
-
-                                            <th >Board Name</th>
-                                            <th >Grade </th>
-                                            <th>Document File  </th>
-
-
-
-                                            <th><button class="add_field_button btn btn-success"><i class="fas fa-plus"></i></button></th>
-                                        </tr>
-                                      </table>
-                              
-                                <div class="input_fields_wrap">
-                                        <div class="row">
-                                              <div class="col-sm-2">  <input style="width: 162px;    margin-left: 14px;" type="text" class="form-control" name="product_image_title[]"></div>
-                                              <div class="col-sm-2">
-                                                  <input type="text" style="width: 162px;    margin-left: 14px;" class="form-control" name="product_image_title[]">
-                                              </div>
-                                              <div class="col-sm-2">
-                                                  <input type="text" style="width: 162px;    margin-left: 14px;" class="form-control" name="product_image_data[]">
-                                              </div>
-                                              <div class="col-sm-2">
-                                                    <input type="text" style="width: 162px;    margin-left: 14px;" class="form-control" name="product_image_title[]">
-                                              </div>
-                                              <div class="col-sm-2">
-                                                    <input type="text" style="width: 162px;    margin-left: 14px;" class="form-control" name="product_image_title[]">
-                                              </div>
-                                          </div>
-                            </div> -->
-
-                                
+     
    
 
 
                         </div>
-                  <!-- <div class="form-actions right">
-                
-                    <button type="submit" class="btn purple mt-ladda-btn">Submit</button>
-                  </div> -->
-                  <!-- <div class="form-actions margin-top-10">
+        
+                 <div class="form-actions margin-top-10">
                         <div class="row">
                             <div class="col-md-offset-2 col-md-10">
-                                <button type="button" class="btn default">Cancel</button>
-                                <button type="button" class="btn blue">Submit</button>
+                              
+                                <button type="submit" class="btn purple">Submit</button>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </form>
               </div>
                 </div>
@@ -514,7 +472,26 @@
     $("#inputFile").change(function () {
         readURL(this);
     });
+
+    function cvURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#cv_upload_preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#cv_file").change(function () {
+        cvURL(this);
+    });
 </script>
+
+
+
 <script type="text/javascript">
 
     $(document).ready(function() {
@@ -531,16 +508,16 @@
                             <table style='margin-top: -25px;'>\
                             <tr>\
                             <td>\
-                                <input type=\"text\" style='width: 144px;'  id=\"company\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
+                                <input type=\"text\" style='width: 144px;'  id=\"company\"  name=\"name_of_exam[]\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
                             </td>\
                             <td>\
-                                <input type=\"text\" style='margin-left:20px;width: 144px;'  id=\"company\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
+                                <input type=\"text\" style='margin-left:20px;width: 144px;'  id=\"year_of_passing[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
                             </td>\
                             <td>\
-                                <input type=\"text\" style='margin-left:26px;width: 144px;'  id=\"company\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
+                                <input type=\"text\" style='margin-left:26px;width: 144px;'  id=\"board[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
                             </td>\
                             <td>\
-                                <input type=\"text\" style='margin-left:26px;width: 144px;' id=\"company\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
+                                <input type=\"text\" style='margin-left:26px;width: 144px;' id=\"grade[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
                             </td>\
                             </tr>\
                             <button class='btn btn-danger remove_field' style='width: 40px;margin-left: 670px;margin-bottom: -28px;'><i class=\"fa fa-trash\"></i></button>\
@@ -575,16 +552,16 @@
                             <table style='margin-top: -25px;'>\
                             <tr>\
                             <td>\
-                                <input type=\"text\" style='width: 144px;'  id=\"company\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
+                                <input type=\"text\" style='width: 144px;'  id=\"company\"  name=\"company_name[]\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
                             </td>\
                             <td>\
-                                <input type=\"text\" style='margin-left:20px;width: 144px;'  id=\"company\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
+                                <input type=\"text\" style='margin-left:20px;width: 144px;'  id=\"company_address[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
                             </td>\
                             <td>\
-                                <input type=\"text\" style='margin-left:26px;width: 144px;'  id=\"company\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
+                                <input type=\"text\" style='margin-left:26px;width: 144px;'  id=\"designation[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
                             </td>\
                             <td>\
-                                <input type=\"text\" style='margin-left:26px;width: 144px;' id=\"company\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
+                                <input type=\"text\" style='margin-left:26px;width: 144px;' id=\"duration[]\"  name=\"dgree\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
                             </td>\
                             </tr>\
                             <button class='btn btn-danger remove_field2' style='width: 40px;margin-left: 670px;margin-bottom: -28px;'><i class=\"fa fa-trash\"></i></button>\
@@ -599,6 +576,36 @@
       $(wrapper).on("click",".remove_field2", function(e){ //user click on remove text
           e.preventDefault(); $(this).parent('div').remove(); x--;
       })
+   
+      $('#designation').html('<option>First Select Departement</option>');
+
+      $('#department').change(function(){
+          var department=$(this).val();
+          var csrf='{{ csrf_token }}';
+          $.ajax({
+              url:"{% url 'get_designation' %}",
+              method:'POST',
+              data:{'department':department,'csrfmiddlewaretoken':csrf},
+              success:function(data)
+              {
+                  if(data.length >0)
+                  {
+                    $('#designation').html('<option>-Select Designation-</option>');
+                    for(i=0;i<data.length;i++)
+                    {
+                        console.log(data[i]);
+                        $('#designation').append("<option value='"+data[i].pk+"'>"+data[i].fields.designation_name+"</option>");
+                    }
+                  }
+                  else
+                  {
+                    $('#designation').html('<option>NO Data Found</option>');
+                  }
+                // 
+               
+              }
+          });
+      });
   });
   </script>
 

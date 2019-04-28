@@ -18,7 +18,7 @@ urlpatterns = [
     path('employee',views.employeeReportView,name="employee"),
     path('addemployee',views.employeeAddView,name="addemployee"),
 
-    
+    path('get_designation',views.employeeDesination,name='get_designation'),
     path('atttendance_report',views.atttendanceReportView,name="atttendance_report"),
 
     path('add_attendance',views.addAttendanceView,name="add_attendance"),

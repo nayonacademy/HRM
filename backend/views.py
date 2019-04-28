@@ -8,6 +8,7 @@ from .forms.department_form import DepartmentForm
 from .forms.leave_form import LeaveTypeForm
 from .forms.designation_form import DesignationForm
 from .forms.employee_form import *
+from django.core import serializers
 
 
 
@@ -149,17 +150,82 @@ def employeeReportView(request):
 #End Designation method 
 #Start Designation method    
 def employeeAddView(request):
-        basic_info=EmployeePersonalForm()
-        contact_info=EmployeeContactForm()
-        bank_info=EmployeeBankForm()
-        joing_info=EmployeeJoiningForm()
+        if request.method == 'POST':
+                 basic_info=EmployeePersonalForm(request.POST,request.FILES)
+                 contact_info=FormContact(request.POST or None)
+                 bank_info=BankForm(request.POST or None)
+                 joining_info=EmployeeJoiningForm(request.POST or None)
+                 name_of_exam=request.POST.getlist('name_of_exam[]')
+                 year_of_passing=request.POST.getlist('year_of_passing[]')
+                 board=request.POST.getlist('board[]')
+                 grade=request.POST.getlist('grade[]')
+                 company_name=request.POST.getlist('company_name[]')
+                 company_address=request.POST.getlist('company_address[]')
+                 designation=request.POST.getlist('designation[]')
+                 duration=request.POST.getlist('duration[]')
+                 file_of_cv= request.FILES.get('cv_file')
+                 if basic_info.is_valid():
+                         get_pk=basic_info.save()
+                         contact_save = contact_info.save(commit=False)
+                         bank_save = bank_info.save(commit=False)
+                         joining_save= joining_info.save(commit=False)
+                         contact_save.emplyee_id=get_pk
+                         bank_save.emplyee_id=get_pk
+                         joining_save.emplyee_id=get_pk
+                        
+                         if contact_info.is_valid():
+                                 contact_save.save()
+                                 if bank_info.is_valid():
+                                         bank_save.save()
+                                         if joining_info.is_valid():
+                                                 joining_save.save()
+                                                 if name_of_exam and year_of_passing and  board and grade:
+                                                         if len(name_of_exam) !=0:
+                                                                 for i in range(len(name_of_exam)):
+                                                                         qualification=EmployeeQualificationModel()
+                                                                         qualification.emplyee_id=get_pk
+                                                                         qualification.name_of_exam=name_of_exam[i]
+                                                                         qualification.year_of_passing=year_of_passing[i]
+                                                                         qualification.board=board[i]
+                                                                         qualification.grade=grade[i]
+                                                                         qualification.save()
+                                                 if  company_name and  company_address and designation and duration:
+                                                         if len(company_name) !=0:
+                                                                 for j in range(len(company_name)):
+                                                                         previouswork=EmployeePreviousworkModel()
+                                                                         previouswork.emplyee_id=get_pk
+                                                                         previouswork.company_name=company_name[j] 
+                                                                         previouswork.company_address=company_address[j]
+                                                                         previouswork.designation=designation[j]
+                                                                         previouswork.duration=duration[j]
+                                                                         previouswork.save()
+                                                 if file_of_cv:
+                                                         bio_info=EmployeePersonalbioModel() 
+                                                         bio_info.emplyee_id=get_pk
+                                                         bio_info.cv_file=file_of_cv
+                                                         bio_info.save()
+                                                         messages.success(request,'Data Save Succsessfully')
+                                                         return HttpResponseRedirect(reverse('addemployee'))
+          
+        else:
+                basic_info=EmployeePersonalForm()
+                contact_info=FormContact()
+                bank_info=BankForm()
+                joining_info=EmployeeJoiningForm()
         context={
                 'basic_info':basic_info,
                 'contact_info':contact_info,
                 'bank_info':bank_info,
-                'joing_info':joing_info
+                'joining_info':joining_info
         }
         return render(request,'backend/employee/createemployee.html',context)
+
+
+def employeeDesination(request):
+        department=request.POST.get('department')
+        designation=DesignationModel.objects.filter(department_name=department)
+        value=serializers.serialize('json',designation)
+        return HttpResponse(value,content_type='application/json')       
 #End Designation method 
 
 # start attendance report method
@@ -190,5 +256,9 @@ def generalsettingsView(request):
 #Start Designation method    
 def employeeattendence(request):
     return render(request,'backend/employee/attendence.html')
+#End Designation method 
+#Start Designation method    
+def newemployeeattendence(request):
+    return render(request,'backend/employee/employeeattendece.html')
 #End Designation method 
 

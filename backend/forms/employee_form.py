@@ -28,10 +28,11 @@ class EmployeePersonalForm(forms.ModelForm):
             'marital_status':forms.Select(attrs={'class':'form-control input-circle','id':'designation'},choices=marital_status)
            
         }  
-class EmployeeContactForm(forms.ModelForm):
+class FormContact(forms.ModelForm):
     class Meta:
         model=EmployeeContactModel
-        fields='__all__'
+        fields=('contact_number','contact_email','present_address','permanent_address')
+        exclude = ("emplyee_id",)
         widgets={
             'contact_number':forms.TextInput(attrs={'class':'form-control input-circle','placeholder':'Contact Number'}),
             'contact_email':forms.EmailInput(attrs={'class':'form-control input-circle','placeholder':'eg.: email@email.com'}),
@@ -39,10 +40,11 @@ class EmployeeContactForm(forms.ModelForm):
             'permanent_address':forms.Textarea(attrs={'class':'form-control input-circle','rows':'2','cols':'3','placeholder':'Parmanent Address'})
 
         }   
-class EmployeeBankForm(forms.ModelForm):
+class BankForm(forms.ModelForm):
        class Meta:
            model=EmployeeBankModel
-           fields='__all__'
+           fields=('account_no','bank_name','branch_name')
+           exclude = ("emplyee_id",)
            widgets={
              'account_no':forms.TextInput(attrs={'class':'form-control input-circle','placeholder':'Account No'}),
              'bank_name':forms.TextInput(attrs={'class':'form-control input-circle','placeholder':'Bank No'}),
@@ -51,35 +53,27 @@ class EmployeeBankForm(forms.ModelForm):
            }   
 class EmployeeJoiningForm(forms.ModelForm):
     class Meta:
-        model=EmployeeBankModel
-        fields='__all__'
+        model=EmployeeJoiningModel
+        exclude = ("emplyee_id",)
+        fields=('date_of_joining','offer_date','confirmation_date')
         widgets={
-           'date_of_joining':forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
-           'offer_date':forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
-           'confirmation_date':forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'})
+           'date_of_joining':forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'}),
+           'offer_date':forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'}),
+           'confirmation_date':forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'})
            }
-class EmployeeQualificationForm(forms.ModelForm):
-    class Meta:
-        model=EmployeeQualificationModel
-        fields='__all__'
-        widgets={
-            'name_of_exam':forms.TextInput(attrs={'class':'form-control','placeholder':'Name Of Exam'}),
-            'year_of_passing':forms.TextInput(attrs={'class':'form-control','placeholder':'Passing Year'}),
-            'board':forms.TextInput(attrs={'class':'form-control','placeholder':'Board'}),
-            'grade':forms.TextInput(attrs={'class':'form-control','placeholder':'Grade'})
 
-         }
-
-class EmployeePreviousworkForm(forms.ModelForm):
-    class Meta:
-        model=EmployeePreviousworkModel
-        fields='__all__'
-        widgets={
-            'company_name':forms.TextInput(attrs={'class':'form-control','placeholder':'Company Name'}),
-            'company_address':forms.Textarea(attrs={'class':'form-control','rows':'2','cols':'3','placeholder':'Company Address'}),
-            'designation':forms.TextInput(attrs={'class':'form-control','placeholder':'Designation'}),
-            'duration':forms.TextInput(attrs={'class':'form-control','placeholder':'Duration'})
-
-        }
+# class EmployeeQualificationForm(forms.ModelForm):
+#         class Meta:
+#             model=EmployeeQualificationModel
+#             fields='__all__'
+      
   
-
+# class EmployeePreviousworkForm(forms.ModelForm):
+#     class Meta:
+#         model=EmployeePreviousworkModel
+#         fields='__all__'
+       
+# class EmployeeBioForm():
+#     class Meta:
+#         model=EmployeePersonalbioModel
+#         fields='__all__'

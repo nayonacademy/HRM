@@ -35,7 +35,7 @@ class DesignationModel(models.Model):
         return self.designation_name
 # Employee Personal  Model
 class EmployeePersonalModel(models.Model):
-    employee_code=models.CharField(max_length=40)
+    employee_code=models.CharField(max_length=40,unique=True)
     employee_name=models.CharField(max_length=40)
     branch=models.ForeignKey(BranchModel,on_delete=models.DO_NOTHING, default=1)
     department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1)
@@ -92,7 +92,6 @@ class EmployeeQualificationModel(models.Model):
     year_of_passing=models.CharField(max_length=30)
     board=models.CharField(max_length=30)
     grade=models.CharField(max_length=30)
-    document_file=models.ImageField(upload_to='emplyee_document/', default='emplyee_document/no-image.png')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     def __str__(self):
@@ -152,15 +151,15 @@ class AddLeaveModel(models.Model):
     def __str__(self):
         return self.employee_code 
 # Add Transfer Model    
-# class TransferModel(models.Model):
-#     employee_code=models.CharField(max_length=40)
-#     issue_date=models.DateTimeField(auto_now=False, auto_now_add=False)
-#     previous_branch=models.ForeignKey(BranchModel,on_delete=models.DO_NOTHING, default=1)
-#     previous_department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1)
-#     present_branch=models.ForeignKey(BranchModel,on_delete=models.DO_NOTHING, default=1)
-#     present_department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1) 
-#     created_at=models.DateTimeField(auto_now_add=True)
-#     updated_at=models.DateTimeField(auto_now=True) 
-#      def __str__(self):
-#         return self.employee_code 
+class TransferModel(models.Model):
+    employee_code=models.CharField(max_length=40)
+    issue_date=models.DateTimeField(auto_now=False, auto_now_add=False)
+    previous_branch=models.CharField(max_length=60)
+    previous_department=models.CharField(max_length=60)
+    present_branch=models.ForeignKey(BranchModel,on_delete=models.DO_NOTHING, default=1)
+    present_department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1) 
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True) 
+    def __str__(self):
+        return self.employee_code 
 
