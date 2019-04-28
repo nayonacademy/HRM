@@ -116,7 +116,7 @@ class EmployeePersonalbioModel(models.Model):
 # Attendance Model    
 class AttendanceModel(models.Model):
     date=models.DateTimeField(auto_now=False, auto_now_add=False)
-    department=models.CharField(max_length=30)
+    department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     def __str__(self):
@@ -125,6 +125,7 @@ class AttendanceModel(models.Model):
 class AttendanceChildModel(models.Model):
     attendance=models.ForeignKey(AttendanceModel,on_delete=models.DO_NOTHING)
     employee_code=models.CharField(max_length=40)
+    status=models.CharField(max_length=10)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     def __str__(self):
