@@ -225,7 +225,16 @@ def employeeDesination(request):
         department=request.POST.get('department')
         designation=DesignationModel.objects.filter(department_name=department)
         value=serializers.serialize('json',designation)
-        return HttpResponse(value,content_type='application/json')       
+        return HttpResponse(value,content_type='application/json')   
+
+def transfer(request):
+        employee = EmployeePersonalModel.objects.all()
+        print(employee)
+        context = {
+                "employee" : employee
+        }
+        return render(request,'backend/employee/employeetable.html',context)
+
 #End Designation method 
 
 # start attendance report method
