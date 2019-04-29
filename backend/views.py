@@ -442,7 +442,7 @@ def add_leave_update(request,pk):
 def generalsettingsView(request):
         return render(request,'backend/settings/general_settings.html')
 def totalEmployeeReport(request):
-        return HttpResponse('ok')
+        return render(request,'backend/reports/total_employee_report.html')
 def totalAttendanceReport(request):
         return HttpResponse('ok')                       
 def getEmployeeData(request):
