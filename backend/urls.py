@@ -40,7 +40,10 @@ urlpatterns = [
     
     path('general_settings',views.generalsettingsView,name="general_settings"),
 
-    path('get_attendance',views.getAttendance,name="get_attendance") 
+    path('get_attendance',views.getAttendance,name="get_attendance"),
+    path('total_employee',views.totalEmployeeReport,name="total_employee"),
+    path('total_attendance',views.totalAttendanceReport,name="total_attendance"),
+    path('get_employee_data',views.getEmployeeData,name='get_employee_data')
 
 
 

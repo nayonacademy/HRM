@@ -440,8 +440,19 @@ def add_leave_update(request,pk):
 
 #End AddLeave method
 def generalsettingsView(request):
-        return render(request,'backend/settings/general_settings.html')        
-                     
+        return render(request,'backend/settings/general_settings.html')
+def totalEmployeeReport(request):
+        return HttpResponse('ok')
+def totalAttendanceReport(request):
+        return HttpResponse('ok')                       
+def getEmployeeData(request):
+        get_employee_code=request.POST.get('employee_code')
+        employee_data=EmployeePersonalModel.objects.filter(employee_code=get_employee_code)
+        value=serializers.serialize('json',employee_data)
+        return HttpResponse(value,content_type="application/json")
+        
+
+                                 
 
 
 
