@@ -161,3 +161,9 @@ class TransferModel(models.Model):
     present_department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1) 
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True) 
+
+class SettingsModel(models.Model):
+    email=models.CharField(max_length=30)
+    contact_no=models.CharField(max_length=30)
+    company_name=models.CharField(max_length=40)
+    company_address=models.TextField()

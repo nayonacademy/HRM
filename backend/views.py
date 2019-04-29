@@ -13,9 +13,6 @@ from .forms.employee_form import *
 from django.core import serializers
 from .forms.attendance_form import AttendanceForm
 
-
-
-
 # Create your views here.
 # Start home method
 def homeView(request):
@@ -439,8 +436,12 @@ def add_leave_update(request,pk):
         return render(request,'backend/leave/add_leave_edit.html',context) 
 
 #End AddLeave method
+#Start generalsettings method
+
 def generalsettingsView(request):
         return render(request,'backend/settings/general_settings.html')
+
+#End generalsettings method
 def totalEmployeeReport(request):
         return HttpResponse('ok')
 def totalAttendanceReport(request):
