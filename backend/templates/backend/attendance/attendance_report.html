@@ -81,12 +81,14 @@
                                                         <tbody>
                                                          <tr>
                                                          <td>
-                                                          <select name="name"  id="company" class="form-control"  required>
-                                                         	<option value="Mr.rahi">Women</option>
+                                                          <select name="department"  id="department" class="form-control"  required>
+                                                              {% for department_fetch in department %}
+                                                                <option value="{{department_fetch.pk}}">{{department_fetch.department_name}}</option>
+                                                              {% endfor %}
                                                          </select>
                                                          </td>
                                                          <td>
-                                                             <input type="date" id="date"  name="from_date" class="form-control"  required/>
+                                                             <input type="date" id="date"   name="from_date" class="form-control"  required/>
                                                          </td>
                                                          
                                                        </tr>
@@ -190,12 +192,12 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 
   $(document).ready(function() {
 
   
-    $('#get_date').change(function(){
+    $('#date').change(function(){
         var date=$(this).val();
         var department=$('#department').val();
        
@@ -205,47 +207,38 @@
         $('#department_name_in_view').html(department);
         $('#to_date_view').html(date);
         $.ajax({
-            url:"{% url 'get_employee' %}",
+            url:"{% url 'get_attendance' %}",
             method:'POST',
-            data:{'department':department,'csrfmiddlewaretoken':csrf},
+            data:{'department':department,'date':date,'csrfmiddlewaretoken':csrf},
             success:function(data)
             {
               console.log(data)
-                if(data.length >0)
-                {
+                // if(data.length >0)
+                // {
                
-                      for(i=0;i<data.length;i++)
-                       {
-                      console.log(data[i]);
-                       $('#employee_data').append("<tr class='gradeX'>\
-                                                 \<td><input type='checkbox' class='check_all'  name='check_employee[]' value='"+data[i].fields.employee_code+"'></td>\
-                                                  \ <td><input type='hidden' class='employee_code' name='employee_code[]' value='"+data[i].fields.employee_code+"'>\
-                                                  "+ data[i].fields.employee_code +"</td>\
-                                                   \<td>\
-                                                   "+ data[i].fields.employee_name +"</td>");
+                //       for(i=0;i<data.length;i++)
+                //        {
+                //       console.log(data[i]);
+                //        $('#employee_data').append("<tr class='gradeX'>\
+                //                                  \<td><input type='checkbox' class='check_all'  name='check_employee[]' value='"+data[i].fields.employee_code+"'></td>\
+                //                                   \ <td><input type='hidden' class='employee_code' name='employee_code[]' value='"+data[i].fields.employee_code+"'>\
+                //                                   "+ data[i].fields.employee_code +"</td>\
+                //                                    \<td>\
+                //                                    "+ data[i].fields.employee_name +"</td>");
              
-                        }
-                  }
-                else
-                {
-                  $('#employee_data').html("<tr class='gradeX'>No Data Found</tr>");
-                }
+                //         }
+                //   }
+                // else
+                // {
+                //   $('#employee_data').html("<tr class='gradeX'><td>No Data Found<td></tr>");
+                // }
               
              
             }
         });
-        $('#present').click(function(){
-          
-            $('.check_all').attr('checked', true);
-       
-        });
-        $('#absent').click(function(){
-        
-             $('.check_all').attr('checked', false);
-       
-        });
+      
     });
 });
-</script> -->
+</script>
 
 {% endblock %}

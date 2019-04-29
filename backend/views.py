@@ -151,6 +151,7 @@ def employeeReportView(request):
         context={
                 'employee_data':employee_data
         }
+        # print(employee_data)
        
         return render(request,'backend/employee/employee.html',context)
 #End Designation method 
@@ -264,7 +265,15 @@ def employeetransfer(request,pk):
 
 # start attendance report method
 def atttendanceReportView(request):
-        return render(request,'backend/attendance/attendance_report.html')
+        department=DepartmentModel.objects.all()
+        context={
+                'department':department
+        }
+        return render(request,'backend/attendance/attendance_report.html',context)
+def getAttendance(request):
+        department=request.POST.get('department')
+        department=request.POST.get('')
+        return HttpResponse('ok')        
 def addAttendanceView(request):
         # department=DepartmentModel.objects.all()
         if request.method == "POST":
@@ -306,6 +315,8 @@ def getEmployee(request):
         employee_data=EmployeePersonalModel.objects.filter(department=department)
         serialize_data=serializers.serialize('json',employee_data)
         return HttpResponse(serialize_data,content_type='application/json')
+
+
 # Start Leavetype method        
 def leaveTypeView(request):
         leave_type_all_data= LeaveTypeModel.objects.all()

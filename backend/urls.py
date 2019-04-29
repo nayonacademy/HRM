@@ -39,9 +39,9 @@ urlpatterns = [
     
     path('general_settings',views.generalsettingsView,name="general_settings"),
 
-    path('employeeattendence',views.employeeattendence,name="employeeattendence")
+    path('employeeattendence',views.employeeattendence,name="employeeattendence"),
 
-
+    path('get_attendance',views.addAttendanceView,name="get_attendance") 
 
 
 ]           
