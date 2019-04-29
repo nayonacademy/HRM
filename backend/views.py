@@ -289,8 +289,11 @@ def transfer_update(request,pk):
 
 # start attendance report method
 def atttendanceReportView(request):
-
-        return render(request,'backend/attendance/attendance_report.html')
+        department=DepartmentModel.objects.all()
+        context={
+                'department':department
+        }
+        return render(request,'backend/attendance/attendance_report.html',context)
 def addAttendanceView(request):
         # return HttpResponse('ok')
         return render(request,'backend/attendance/add_attendance.html')
