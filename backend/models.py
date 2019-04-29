@@ -119,8 +119,8 @@ class AttendanceModel(models.Model):
     department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return self.department 
+    # def __str__(self):
+    #     return self.department 
 # Attendance Child Model 
 class AttendanceChildModel(models.Model):
     attendance=models.ForeignKey(AttendanceModel,on_delete=models.DO_NOTHING)
@@ -128,8 +128,8 @@ class AttendanceChildModel(models.Model):
     status=models.CharField(max_length=10)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return self.employee_code
+    # def __str__(self):
+    #     return self.employee_code
 # Leave Type Model         
 class LeaveTypeModel(models.Model):
     name=models.CharField(max_length=30) 
@@ -150,7 +150,7 @@ class AddLeaveModel(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     def __str__(self):
-        return self.employee_code 
+        return self.leave_type 
 # Add Transfer Model    
 class TransferModel(models.Model):
     employee_code=models.CharField(max_length=40)
@@ -161,6 +161,6 @@ class TransferModel(models.Model):
     present_department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1) 
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True) 
-    def __str__(self):
-        return self.employee_code 
+    # def __str__(self):
+    #     return self.employee_code 
 

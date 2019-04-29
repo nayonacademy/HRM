@@ -41,7 +41,7 @@ urlpatterns = [
 
     path('employeeattendence',views.employeeattendence,name="employeeattendence"),
 
-    path('get_attendance',views.addAttendanceView,name="get_attendance") 
+    path('get_attendance',views.getAttendance,name="get_attendance") 
 
 
 ]           

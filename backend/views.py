@@ -272,16 +272,20 @@ def atttendanceReportView(request):
         return render(request,'backend/attendance/attendance_report.html',context)
 def getAttendance(request):
         department=request.POST.get('department')
-        department=request.POST.get('')
-        return HttpResponse('ok')        
+        date=request.POST.get('date')
+        parent_data=get_object_or_404(AttendanceModel,department=department,date=date)
+        attendance_data=AttendanceChildModel.objects.filter(attendance=parent_data.pk)
+        serialize_data=serializers.serialize('json',attendance_data)
+        return HttpResponse(serialize_data,content_type='application/json') 
+      
 def addAttendanceView(request):
         # department=DepartmentModel.objects.all()
         if request.method == "POST":
                 attendance_form=AttendanceForm(request.POST or None)
                 check_employee=request.POST.getlist('check_employee[]')
                 all_employee=request.POST.getlist('employee_code[]')
-                print('all',all_employee)
                 if attendance_form.is_valid():
+
                         attendance_id=attendance_form.save()      
                         if  check_employee:
                                 for i in range(len(check_employee)):
