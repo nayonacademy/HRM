@@ -150,8 +150,8 @@ def employeeReportView(request):
         employee_data=EmployeePersonalModel.objects.all()
         context={
                 'employee_data':employee_data
-        }
-        # print(employee_data)
+                }
+       
        
         return render(request,'backend/employee/employee.html',context)
 #End Designation method 
