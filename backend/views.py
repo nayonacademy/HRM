@@ -465,7 +465,7 @@ def generalsettingsView(request,pk):
 
 #End generalsettings method
 def totalEmployeeReport(request):
-        return HttpResponse('ok')
+        return render(request,'backend/reports/total_employee_report.html')
 def totalAttendanceReport(request):
         return HttpResponse('ok')                       
 def getEmployeeData(request):
