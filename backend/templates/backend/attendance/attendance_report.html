@@ -41,7 +41,7 @@
               <div class="portlet purple box">
                 <div class="portlet-title">
                   <div class="caption">
-                    <i class="fa fa-cogs"></i>Add Attendance
+                    <i class="fa fa-cogs"></i>Attendance Report
                   </div>
                   <div class="tools">
                     <a href="javascript:;" class="collapse" data-original-title="" title="">
@@ -64,7 +64,7 @@
 										
                                                     <div class="col-sm-9 col-sm-offset-2">
                                                         <br>
-                                                         <h3 style="text-align: center;">Mark Your Attendance</h3>
+                                                         <h3 style="text-align: center;">Daily Attendance Report</h3>
                                                          <hr>
                                                         <table class="table address" >
                                                          <thead>
@@ -97,7 +97,7 @@
                                                        <div id="table_show_trigger_forattendance" class="col-xs-12" style="display: none;">
                                                           <table class="table address" border="1px">
                                                             <tbody>
-                                                        
+                                                                2    
                                                              <tr>
                                                                <td><b>Department Name</b></td>
                                                                <td id="department_name_in_view">
@@ -122,27 +122,14 @@
                                              <div class="col-sm-4">
                                              <div class="tile-stats tile-gray">
                                              <div class="icon"><i class="entypo-chart-area"></i></div>
-                                             <h4 style="color: #34495e;text-align: center;">Attendance For Employee</h4>
-                                             <h4 style="color: #34495e;text-align: center;">Section</h4>
+                                             <h4 style="color: #34495e;text-align: center;">Employee Daily Attendance Report</h4>
+                                           
                                              <h4 style="color:#34495e;"></h4>
                                              </div>
                                             </div>
                                             <div class="col-sm-4"></div>
                                             </div>
-                                            <br>
-        
-        
-                                         <center>
-                                         <a class="btn btn-default " id='present'>
-                                             <i class="fa fa-check-square-o" aria-hidden="true"></i> 
-                                             Mark All Present
-                                         </a>
-                                         <a class="btn btn-default "  id='absent'>
-                                             <i class="fa fa-times" aria-hidden="true"></i> 
-                                             Mark All Absent
-                                         </a>
-                                      </center>
-                                     <br><br>
+                                            <hr><br>
         
         
         
@@ -150,9 +137,9 @@
                                      <table class="table table-bordered">
                                            <thead>
                                              <tr>
-                                              <th>Check For Attendance</th>
+                                              
                                               <th>Employee Code</th>
-                                              <th>Employee Name</th>
+                                              <th>Status</th>
                                       
                                               
                                              </tr>
@@ -196,7 +183,7 @@
 
   $(document).ready(function() {
 
-  
+  alert('ok');
     $('#date').change(function(){
         var date=$(this).val();
         var department=$('#department').val();
@@ -212,26 +199,26 @@
             data:{'department':department,'date':date,'csrfmiddlewaretoken':csrf},
             success:function(data)
             {
-              console.log(data)
-                // if(data.length >0)
-                // {
+              console.log(data);
+              if(data.length >0)
+                {
                
-                //       for(i=0;i<data.length;i++)
-                //        {
-                //       console.log(data[i]);
-                //        $('#employee_data').append("<tr class='gradeX'>\
-                //                                  \<td><input type='checkbox' class='check_all'  name='check_employee[]' value='"+data[i].fields.employee_code+"'></td>\
-                //                                   \ <td><input type='hidden' class='employee_code' name='employee_code[]' value='"+data[i].fields.employee_code+"'>\
-                //                                   "+ data[i].fields.employee_code +"</td>\
-                //                                    \<td>\
-                //                                    "+ data[i].fields.employee_name +"</td>");
+                      for(i=0;i<data.length;i++)
+                       {
+                      console.log(data[i]);
+                       $('#employee_data').append("<tr class='gradeX'>\
+                                                  \ <td><input type='hidden' class='employee_code' name='employee_code[]' value='"+data[i].fields.employee_code+"'>\
+                                                  "+ data[i].fields.employee_code +"</td>\
+                                                   \<td>\
+                                                   "+ data[i].fields.status+"</td>");
              
-                //         }
-                //   }
-                // else
-                // {
-                //   $('#employee_data').html("<tr class='gradeX'><td>No Data Found<td></tr>");
-                // }
+                        }
+                  }
+                else
+                {
+                  $('#employee_data').html("<tr class='gradeX'>No Data Found</tr>");
+                }
+               
               
              
             }
