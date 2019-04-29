@@ -1,5 +1,5 @@
 {% extends 'backend/base.html' %}
-{% block title %}Leave{% endblock title %}
+{% block title %}Transfer{% endblock title %}
 {% block content %}
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
@@ -22,8 +22,8 @@
                     </div>
                     <!-- END PAGE BAR -->
                     <!-- BEGIN PAGE TITLE-->
-                    <h3 class="page-title"> Leave Datatables
-                        <small>This is Leave area.</small>
+                    <h3 class="page-title"> Transfer Datatables
+                        <small>This is Transfer area.</small>
                     </h3>
                     <!-- END PAGE TITLE-->
                     <!-- END PAGE HEADER-->
@@ -35,18 +35,18 @@
                                 <div class="portlet-title">
                                     <div class="caption">
                                         <i class="icon-bubble font-dark"></i>
-                                        <span class="caption-subject font-dark bold uppercase">Leave Table</span>
+                                        <span class="caption-subject font-dark bold uppercase">Transfer Table</span>
                                     </div>
                                     <div class="actions">
                                         <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#exampleModal">
                                             <i class="fa fa-plus"></i>
-                                            Create New Leave
+                                            Create New Transfer
                                           </button>
                                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Create Leave</h5>
+                                                  <h5 class="modal-title" id="exampleModalLabel">Create Transfer</h5>
                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                   </button>
@@ -61,35 +61,34 @@
                                                   </div>
 
                                                     <div class="form-group">
-                                                      <label for="exampleInputEmail1"> Leave Type</label>
-                                                     {{form.leave_type}}
-                                                     <div class="text-danger">{{form.employee_code.errors}}</div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">From Date </label>
-                                                        {{form.from_date}}
+                                                        <label for="exampleInputEmail1">Issue Date </label>
+                                                        {{form.issue_date}}
                                                         <div class="text-danger">{{form.employee_code.errors}}</div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">To Date</label>
-                                                        {{form.to_date}}
+                                                        <label for="exampleInputEmail1">Previous Branch</label>
+                                                        {{form.previous_branch}}
                                                         <div class="text-danger">{{form.employee_code.errors}}</div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="exampleInputEmail1">Reason</label>
-                                                        {{form.reason}}
+                                                        <label for="exampleInputEmail1">Previous Department</label>
+                                                        {{form.previous_department}}
                                                         <div class="text-danger">{{form.employee_code.errors}}</div>
                                                     </div>
                                           
                                                       <div class="form-group">
-                                                        <label>Status</label>
-                                                      {{form.status}}
+                                                        <label>Present Branch</label>
+                                                      {{form.present_branch}}
                                                       <div class="text-danger">{{form.employee_code.errors}}</div>
                                                     </div>
-                                                    
+
+                                                    <div class="form-group">
+                                                        <label>Present Department</label>
+                                                      {{form.present_department}}
+                                                      <div class="text-danger">{{form.employee_code.errors}}</div>
+                                                    </div>
                                           
                                                 </div>
                                                 <div class="modal-footer">
@@ -109,40 +108,35 @@
                                             <thead>
                                                 <tr>
                                                     <th> Id </th>
-                                                    <th> Employee Code </th>
-                                                    <th>  Leave Type </th>
-                                                    <th> From Date </th>
-                                                    <th> To Date </th>
-                                                    <th> Reason </th>
-                                                    <th> Status </th>
+                                                    <th> Employee<br>Code </th>
+                                                    <th> Issue<br>Date  </th>
+                                                    <th>  Previous<br>Branch </th>
+                                                    <th> Previous<br>Department </th>
+                                                    <th> Present<br>Branch </th>
+                                                    <th> Present<br>Department </th>
                                                     <th> Action </th>
                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {% for add_leave_data in add_leave %}
+                                                {% for transfer_data in transfer %}
                                                 <tr>
                                                     <td>{{forloop.counter}}</td>
-                                                    <td>{{add_leave_data.employee_code}}</td>
-                                                    <td>{{add_leave_data.leave_type}}</td>
-                                                    <td>{{add_leave_data.from_date|date:'F d Y'}}</td>
-                                                    <td>{{add_leave_data.to_date|date:'F d Y'}}</td>
-                                                    <td>{{add_leave_data.reason|slice:5}}</td>
+                                                    <td>{{transfer_data.employee_code}}</td>
+                                                    <td>{{transfer_data.issue_date|date:'F d Y'}}</td>
+                                                    <td>{{transfer_data.previous_branch}}</td>
+                                                    <td>{{transfer_data.previous_department}}</td>
+                                                    <td>{{transfer_data.present_branch}}</td>
+                                                    <td>{{transfer_data.present_department}}</td>
+                                                    
                                                     <td>
-                                                        {% if add_leave_data.status == "Active" %}
-                                                         <span style="color:royalblue">{{add_leave_data.status}}</span>
-                                                        {% else %}
-                                                          <span style="color:blueviolet">{{add_leave_data.status}}</span>
-                                                         {% endif %} 
-                                                     </td>
-                                                    <td>
-                                                        <a href="{% url 'add_leave_update' add_leave_data.id %}"
+                                                        <a href="{% url 'transfer_update' transfer_data.id %}"
                                                         class="btn purple mt-ladda-btn ladda-button btn-circle" data-style="slide-left">
                                                             <span class="ladda-label">Edit</span>
                                                         <span class="ladda-spinner"></span>
                                                         </a>
-
-                                                        <a href="{% url 'add_leave_delete' add_leave_data.id %}" onclick="return confirm('Are You Sure?')" 
+                                                       
+                                                        <a href="{% url 'transfer_delete' transfer_data.id %}" onclick="return confirm('Are You Sure?')" 
                                                         class="btn red mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
                                                             <span class="ladda-label">Delete</span>
                                                         <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>

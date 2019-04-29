@@ -8,6 +8,7 @@ from .forms.department_form import DepartmentForm
 from .forms.leave_form import LeaveTypeForm
 from .forms.add_leave_form import AddLeaveForm
 from .forms.designation_form import DesignationForm
+from .forms.transfer_form import TransferForm
 from .forms.employee_form import *
 from django.core import serializers
 
@@ -144,12 +145,14 @@ def designation_update(request,pk):
         }        
         return render(request,'backend/designation/designation_edit.html',context)
 
+#End Department method
 
 #Start Designation method    
 def employeeReportView(request):
         return render(request,'backend/employee/employee.html')
 #End Designation method 
-#Start Designation method    
+
+#Start Employee method    
 def employeeAddView(request):
         if request.method == 'POST':
                  basic_info=EmployeePersonalForm(request.POST,request.FILES)
@@ -228,35 +231,48 @@ def employeeDesination(request):
         value=serializers.serialize('json',designation)
         return HttpResponse(value,content_type='application/json')   
 
-def transfer(request):
-        employee = EmployeePersonalModel.objects.all()
-        print(employee)
-        context = {
-                "employee" : employee
-        }
-        return render(request,'backend/employee/employeetable.html',context)
+#End Employee method
 
-def employeetransfer(request,pk):
-        get_employee=get_object_or_404(EmployeePersonalModel,pk=pk)
-        print(get_employee)
-        if request.method == 'POST':
-                print(request.POST)
-                form=EmployeePersonalForm(request.POST,instance=get_employee)
-                print(form)
-                if form.is_valid():
-                        print("Form Validate")
-                        form.save()
-                else:
-                        print("Not Valid")    
-                        print(form.errors)    
+#Start transfer method
+def transfer(request):
+        transfer_all_data= TransferModel.objects.all()
+        if request.method =='POST':
+                transfer=TransferForm(request.POST)
+                if transfer.is_valid():
+                        transfer.save()
+                        messages.success(request,'Transfer Form submission successful')
+                        return HttpResponseRedirect(reverse('transfer'))
+                
         else:
-            form=EmployeePersonalForm(instance=get_employee)
-            print(form)
+                transfer=TransferForm()
         context={
-                'form':form
-        }
-        return render(request,'backend/employee/transferform.html',context)
-#End Designation method 
+                'form':transfer,
+                'transfer':transfer_all_data
+        }        
+        return render(request,'backend/employee/transfer.html',context)
+
+def transfer_delete(request,pk):
+        transfer_delete_data=get_object_or_404(TransferModel,pk=pk)
+        transfer_delete_data.delete()
+        messages.info(request,'Transfer Deleted')
+        return HttpResponseRedirect(reverse('transfer')) 
+
+def transfer_update(request,pk):
+        transfer_edit_data=get_object_or_404(TransferModel,pk=pk)
+        if request.method == 'POST':
+                form=TransferForm(request.POST or None,instance=transfer_edit_data)
+                if form.is_valid():
+                        form.save()
+                        messages.success(request,"Transfer data updated successfully")
+                        return HttpResponseRedirect(reverse('transfer'))
+        else:
+                form=TransferForm(instance=transfer_edit_data)
+        context={
+                'form':form,
+                
+        }        
+        return render(request,'backend/employee/transfer_edit.html',context) 
+#End Transfer method 
 
 
 # start attendance report method
@@ -287,7 +303,7 @@ def leaveTypeView(request):
 def leave_type_delete(request,pk):
         leave_type_delete_data=get_object_or_404(LeaveTypeModel,pk=pk)
         leave_type_delete_data.delete()
-        messages.info(request,'leave_type Deleted')
+        messages.info(request,'leave Type Deleted')
         return HttpResponseRedirect(reverse('leave_type')) 
 
 def leave_type_update(request,pk):
