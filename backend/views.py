@@ -12,7 +12,8 @@ from .forms.transfer_form import TransferForm
 from .forms.employee_form import *
 from django.core import serializers
 from .forms.attendance_form import AttendanceForm
-
+from .forms.settings_form import SettingsForm
+import os
 # Create your views here.
 # Start home method
 def homeView(request):
@@ -438,8 +439,29 @@ def add_leave_update(request,pk):
 #End AddLeave method
 #Start generalsettings method
 
-def generalsettingsView(request):
-        return render(request,'backend/settings/general_settings.html')
+def generalsettingsView(request,pk):
+        settings_data=get_object_or_404(SettingsModel,pk=pk)
+        old_file = settings_data.logo
+        if request.method == "POST":
+                 form = SettingsForm(request.POST,request.FILES,instance=settings_data)
+                 if form.is_valid():
+                         if request.FILES:
+                                 new_file = request.FILES.get('logo')
+                                 if not old_file == new_file:
+                                          if os.path.isfile(old_file.path):
+                                                  os.remove(old_file.path)
+                                                  form.save()
+                                                  messages.success(request, 'Product Updated Successfully')
+                                                  return redirect('general_settings', pk=pk)
+        else:
+                form=SettingsForm(instance=settings_data)
+
+        context={
+                'form':form,
+                'settings_data':settings_data
+        }
+        return render(request,'backend/settings/general_settings.html',context)
+        
 
 #End generalsettings method
 def totalEmployeeReport(request):

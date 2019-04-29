@@ -38,7 +38,7 @@ urlpatterns = [
     path('add_leave_delete/<int:pk>',views.add_leave_delete,name="add_leave_delete"),
     path('add_leave_update/<int:pk>',views.add_leave_update,name="add_leave_update"),
     
-    path('general_settings',views.generalsettingsView,name="general_settings"),
+    path('general_settings/<int:pk>',views.generalsettingsView,name="general_settings"),
 
     path('get_attendance',views.getAttendance,name="get_attendance"),
     path('total_employee',views.totalEmployeeReport,name="total_employee"),

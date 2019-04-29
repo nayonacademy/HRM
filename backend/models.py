@@ -167,3 +167,4 @@ class SettingsModel(models.Model):
     contact_no=models.CharField(max_length=30)
     company_name=models.CharField(max_length=40)
     company_address=models.TextField()
+    logo=models.ImageField(upload_to='settings/', default='settings/hrm-logo.png')
