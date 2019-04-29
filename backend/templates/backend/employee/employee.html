@@ -87,6 +87,7 @@
                                                 <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/>
                                             </th>
                                             <th>
+<<<<<<< HEAD
                                                  Username
                                             </th>
                                             <th>
@@ -100,10 +101,38 @@
                                             </th>
                                             <th>
                                                  Status
+=======
+                                                Sl
+                                            </th>
+                                            <th>
+                                                    Employee code
+                                            </th>
+                                            <th>
+                                                    Employee name
+                                            </th>
+                                            <th>
+                                                    Branch
+                                            </th>
+                                            <th>
+                                                    Department
+                                            </th>
+                                            <th>
+                                                    Designation
+                                            </th>
+                                            <th>
+                                                    Gender
+                                            </th>
+                                            <th>
+                                                    Photo
+                                            </th>
+                                            <th>
+                                                Action
+>>>>>>> b3fa13fddcd2de7293bd3bc01f2fdc9137dea6fd
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
+<<<<<<< HEAD
                                         <tr class="odd gradeX">
                                             <td>
                                                 <input type="checkbox" class="checkboxes" value="1"/>
@@ -654,6 +683,61 @@
                                                 Approved </span>
                                             </td>
                                         </tr>
+=======
+                                     
+                                       {% for data_fetch in employee_data %}
+                                        <tr class="odd gradeX">
+                                            <td>  <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/> </td>
+                                            <td> {{forloop.counter}} </td>
+                                            <td>
+                                            {{data_fetch.employee_code}}
+                                            </td>
+                                           
+                                            <td>
+                                              {{data_fetch.employee_name}}
+                                            </td>
+                                           
+                                            <td>
+                                            {{data_fetch.branch}}
+                                            </td>
+                                           
+                                            <td>
+                                              {{data_fetch.department}} 
+                                            </td>
+                                            
+                                            <td>
+                                               {{data_fetch.designation}}    
+                                            </td>
+
+                                            <td>
+                                             {{data_fetch.gender}} 
+                                            </td>
+                                            <td> <img src="{{data_fetch.photo.url}}" style="width: 42px; height: 44px;"/></td>
+
+                                            <td>
+                                                    <a href="" class="btn green mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
+                                                        <span class="ladda-label">View</span>
+                                                    <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>
+                                                    </a>
+                                                    <a href=""
+                                                    class="btn purple mt-ladda-btn ladda-button btn-circle" data-style="slide-left">
+                                                        <span class="ladda-label">Edit</span>
+                                                    <span class="ladda-spinner"></span>
+                                                    </a>
+                                                   
+                                                   
+                                                    <a href="" onclick="return confirm('Are You Sure?')" 
+                                                    class="btn red mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
+                                                        <span class="ladda-label">Delete</span>
+                                                    <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>
+                                                    </a>
+                                                   
+                                                </td>
+                                        </tr>
+                                        {% endfor %}
+                                       
+                                
+>>>>>>> b3fa13fddcd2de7293bd3bc01f2fdc9137dea6fd
                                         </tbody>
                                         </table>
                                     </div>

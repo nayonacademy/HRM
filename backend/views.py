@@ -11,6 +11,7 @@ from .forms.designation_form import DesignationForm
 from .forms.transfer_form import TransferForm
 from .forms.employee_form import *
 from django.core import serializers
+from .forms.attendance_form import AttendanceForm
 
 
 
@@ -145,11 +146,18 @@ def designation_update(request,pk):
         }        
         return render(request,'backend/designation/designation_edit.html',context)
 
-#End Department method
+
 
 #Start Designation method    
 def employeeReportView(request):
-        return render(request,'backend/employee/employee.html')
+        employee_data=EmployeePersonalModel.objects.all()
+        context={
+                'employee_data':employee_data
+                }
+       
+       
+        return render(request,'backend/employee/employee.html',context)
+
 #End Designation method 
 
 #Start Employee method    
@@ -231,6 +239,7 @@ def employeeDesination(request):
         value=serializers.serialize('json',designation)
         return HttpResponse(value,content_type='application/json')   
 
+
 #End Employee method
 
 #Start transfer method
@@ -274,13 +283,74 @@ def transfer_update(request,pk):
         return render(request,'backend/employee/transfer_edit.html',context) 
 #End Transfer method 
 
+#End Designation method 
+
+
 
 # start attendance report method
 def atttendanceReportView(request):
+
         return render(request,'backend/attendance/attendance_report.html')
 def addAttendanceView(request):
         # return HttpResponse('ok')
         return render(request,'backend/attendance/add_attendance.html')
+
+        department=DepartmentModel.objects.all()
+        context={
+                'department':department
+        }
+        return render(request,'backend/attendance/attendance_report.html',context)
+def getAttendance(request):
+        department=request.POST.get('department')
+        date=request.POST.get('date')
+        parent_data=get_object_or_404(AttendanceModel,department=department,date=date)
+        attendance_data=AttendanceChildModel.objects.filter(attendance=parent_data.pk)
+        serialize_data=serializers.serialize('json',attendance_data)
+        return HttpResponse(serialize_data,content_type='application/json') 
+      
+def addAttendanceView(request):
+        # department=DepartmentModel.objects.all()
+        if request.method == "POST":
+                attendance_form=AttendanceForm(request.POST or None)
+                check_employee=request.POST.getlist('check_employee[]')
+                all_employee=request.POST.getlist('employee_code[]')
+                if attendance_form.is_valid():
+
+                        attendance_id=attendance_form.save()      
+                        if  check_employee:
+                                for i in range(len(check_employee)):
+                                        all_employee.remove(check_employee[i])
+                                        attendance_child=AttendanceChildModel()
+                                        attendance_child.attendance=attendance_id
+                                        attendance_child.employee_code=check_employee[i]
+                                        attendance_child.status='Present'
+                                        attendance_child.save()    
+                                     
+                        if all_employee:
+                                for j in range(len(all_employee)):
+                                        attendance_child=AttendanceChildModel()
+                                        attendance_child.attendance=attendance_id
+                                        attendance_child.employee_code=all_employee[j]
+                                        attendance_child.status='Absent'
+                                        attendance_child.save()
+                        messages.success(request,'Attendance Add Operation Successful')                  
+                        return HttpResponseRedirect(reverse('add_attendance'))
+                              
+        else:
+                attendance_form=AttendanceForm()
+               
+        context={
+                'attendance_form':attendance_form
+        }               
+        return render(request,'backend/attendance/add_attendance.html',context)
+
+def getEmployee(request):
+        department=request.POST.get('department');
+        employee_data=EmployeePersonalModel.objects.filter(department=department)
+        serialize_data=serializers.serialize('json',employee_data)
+        return HttpResponse(serialize_data,content_type='application/json')
+
+
 
 # Start Leavetype method        
 def leaveTypeView(request):
@@ -303,6 +373,7 @@ def leaveTypeView(request):
 def leave_type_delete(request,pk):
         leave_type_delete_data=get_object_or_404(LeaveTypeModel,pk=pk)
         leave_type_delete_data.delete()
+
         messages.info(request,'leave Type Deleted')
         return HttpResponseRedirect(reverse('leave_type')) 
 
@@ -369,12 +440,6 @@ def generalsettingsView(request):
         return render(request,'backend/settings/general_settings.html')        
                      
 
-#Start Designation method    
-def employeeattendence(request):
-    return render(request,'backend/employee/attendence.html')
-#End Designation method 
-#Start Designation method    
-def newemployeeattendence(request):
-    return render(request,'backend/employee/employeeattendece.html')
-#End Designation method 
+
+
 

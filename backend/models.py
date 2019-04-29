@@ -35,20 +35,20 @@ class DesignationModel(models.Model):
         return self.designation_name
 # Employee Personal  Model
 class EmployeePersonalModel(models.Model):
-    employee_code=models.CharField(max_length=40,unique=True)
-    employee_name=models.CharField(max_length=40)
+    employee_code=models.CharField(max_length=100,unique=True)
+    employee_name=models.CharField(max_length=100)
     branch=models.ForeignKey(BranchModel,on_delete=models.DO_NOTHING, default=1)
     department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1)
     designation=models.ForeignKey(DesignationModel,on_delete=models.DO_NOTHING, default=1)
-    father_name=models.CharField(max_length=40)
-    mother_name=models.CharField(max_length=40)
+    father_name=models.CharField(max_length=100)
+    mother_name=models.CharField(max_length=100)
     date_of_birth=models.DateTimeField(auto_now=False, auto_now_add=False)
     gender=models.CharField(max_length=20)
-    national_id=models.CharField(max_length=50)
-    nationality=models.CharField(max_length=30)
+    national_id=models.CharField(max_length=150)
+    nationality=models.CharField(max_length=40)
     blood_group=models.CharField(max_length=10)
-    religion=models.CharField(max_length=20)
-    marital_status=models.CharField(max_length=20)
+    religion=models.CharField(max_length=30)
+    marital_status=models.CharField(max_length=30)
     photo=models.ImageField(upload_to = 'emplyee_image/', default = 'emplyee_image/no-image.png')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
@@ -116,19 +116,20 @@ class EmployeePersonalbioModel(models.Model):
 # Attendance Model    
 class AttendanceModel(models.Model):
     date=models.DateTimeField(auto_now=False, auto_now_add=False)
-    department=models.CharField(max_length=30)
+    department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return self.department 
+    # def __str__(self):
+    #     return self.department 
 # Attendance Child Model 
 class AttendanceChildModel(models.Model):
     attendance=models.ForeignKey(AttendanceModel,on_delete=models.DO_NOTHING)
     employee_code=models.CharField(max_length=40)
+    status=models.CharField(max_length=10)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return self.employee_code
+    # def __str__(self):
+    #     return self.employee_code
 # Leave Type Model         
 class LeaveTypeModel(models.Model):
     name=models.CharField(max_length=30) 
@@ -149,7 +150,7 @@ class AddLeaveModel(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     def __str__(self):
-        return self.employee_code 
+        return self.leave_type 
 # Add Transfer Model    
 class TransferModel(models.Model):
     employee_code=models.CharField(max_length=40)
@@ -160,6 +161,3 @@ class TransferModel(models.Model):
     present_department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1) 
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True) 
-    def __str__(self):
-        return self.employee_code 
-

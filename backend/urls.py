@@ -17,11 +17,13 @@ urlpatterns = [
 
     path('employee',views.employeeReportView,name="employee"),
     path('addemployee',views.employeeAddView,name="addemployee"),
+
     
     path('transfer',views.transfer,name="transfer"),
     path('transfer_delete/<int:pk>',views.transfer_delete,name="transfer_delete"),
     path('transfer_update/<int:pk>',views.transfer_update,name="transfer_update"),
     
+    path('get_employee',views.getEmployee,name='get_employee'),
 
     path('get_designation',views.employeeDesination,name='get_designation'),
     path('atttendance_report',views.atttendanceReportView,name="atttendance_report"),
@@ -38,7 +40,8 @@ urlpatterns = [
     
     path('general_settings',views.generalsettingsView,name="general_settings"),
 
-    path('employeeattendence',views.employeeattendence,name="employeeattendence")
+    path('get_attendance',views.getAttendance,name="get_attendance") 
+
 
 
 ]           
