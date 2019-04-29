@@ -55,27 +55,8 @@
             <li class="heading">
                 <h3 class="uppercase">Pages</h3>
             </li>
-            <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
-                    <span class="title">User</span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-item  ">
-                        <a href="{% url 'employee' %}" class="nav-link ">
-                            <i class="icon-user"></i>
-                            <span class="title">All Employee</span>
-                        </a>
-                    </li>
-                    <li class="nav-item  ">
-                        <a href="{% url 'addemployee' %}" class="nav-link ">
-                            <i class="icon-user-female"></i>
-                            <span class="title">Add a New Employee</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            
+
             <li class="nav-item  ">
                 <a href="{% url 'branch' %}" class="nav-link nav-toggle">
                     <i class="icon-basket"></i>
@@ -98,8 +79,84 @@
                    
                 </a>
             </li>
-            
-            
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Employee</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{% url 'employee' %}" class="nav-link ">
+                            <i class="icon-user"></i>
+                            <span class="title">Employee Report </span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{% url 'addemployee' %}" class="nav-link ">
+                            <i class="icon-user-female"></i>
+                            <span class="title">Add a New Employee</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{% url 'transfer' %}" class="nav-link ">
+                            <i class="icon-user-female"></i>
+                            <span class="title">Employee Transfer</span>
+                        </a>
+                    </li>
+                  
+                </ul>
+            </li>
+            <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-user"></i>
+                        <span class="title">Attendance</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="{% url 'atttendance_report' %}" class="nav-link ">
+                                <i class="icon-user"></i>
+                                <span class="title">Attendance Report </span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="{% url 'add_attendance' %}" class="nav-link ">
+                                <i class="icon-user-female"></i>
+                                <span class="title">Add Attendance </span>
+                            </a>
+                        </li>
+                       
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-user"></i>
+                            <span class="title">Leave</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{% url 'leave_type' %}" class="nav-link ">
+                                    <i class="icon-user"></i>
+                                    <span class="title">Leave Type </span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{% url 'add_leave' %}" class="nav-link ">
+                                    <i class="icon-user-female"></i>
+                                    <span class="title">Add Leave </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                            <a href="{% url 'general_settings' %}" class="nav-link nav-toggle">
+                                <i class="icon-user"></i>
+                                <span class="title">General Settings</span>
+                               
+                            </a>
+                        </li>
             
         <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->

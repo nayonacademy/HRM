@@ -46,6 +46,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END SIDEBAR -->
             <!-- BEGIN CONTENT -->
             {% block content %}
+            
             {% endblock content %}
             <!-- END CONTENT -->
             <!-- BEGIN QUICK SIDEBAR -->
@@ -55,6 +56,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         {% include 'backend/layouts/footer.html' %}
+        
         <!-- END FOOTER -->
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
@@ -62,3 +64,5 @@ License: You must have a valid license purchased only from themeforest(the above
 <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
 {% include 'backend/layouts/js.html' %}
+{% block js %} {% endblock js %}
+

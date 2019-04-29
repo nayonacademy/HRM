@@ -1,0 +1,169 @@
+{% extends 'backend/base.html' %}
+{% block title %}Create Employee{% endblock title %}
+{% block content %}
+<div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <!-- BEGIN PAGE HEADER-->
+            <!-- BEGIN THEME PANEL -->
+            <!-- END THEME PANEL -->
+            <!-- BEGIN PAGE BAR -->
+            <h3 class="page-title">
+                Order View <small>view order details</small>
+                </h3>
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="index.html">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="#">eCommerce</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="#">Order View</a>
+                        </li>
+                    </ul>
+                  
+                </div>
+<div class="row">
+
+ 
+    
+
+
+
+    <!-- BEGIN BORDERED TABLE PORTLET-->
+            <div class="col-md-10" style="margin-top: 25px;">
+              <!-- BEGIN ALERTS PORTLET-->
+              <div class="portlet purple box">
+                <div class="portlet-title">
+                  <div class="caption">
+                    <i class="fa fa-cogs"></i>Add Attendance
+                  </div>
+                  <div class="tools">
+                    <a href="javascript:;" class="collapse" data-original-title="" title="">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+                    </a>
+                    <a href="javascript:;" class="reload" data-original-title="" title="">
+                    </a>
+                    <a href="javascript:;" class="remove" data-original-title="" title="">
+                    </a>
+                  </div>
+                </div>
+                <div class="portlet-body form" style="display: block;">
+           
+                  <form action="" method="POST" class="form-horizontal">
+                      <div class="form-body">
+                          {% csrf_token %}
+                         
+											<div class="form-group">
+											
+										
+                                                    <div class="col-sm-9 col-sm-offset-2">
+                                                        <br>
+                                                         <h3 style="text-align: center;">Mark Your Attendance</h3>
+                                                         <hr>
+                                                        <table class="table address" >
+                                                         <thead>
+                                                          <tr class="portlet purple box">
+                                                             <th style="color: white; text-align: center;">
+                                                                 Department
+                                                             </th>
+                                                             <th style="color: white; text-align: center;">
+                                                             Date
+                                                             </th>
+                                                           
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                         <tr>
+                                                         <td>
+                                                           <select name="name"  id="company" class="form-control"  required>
+                                                               <option value="Mr.rahi">Women</option>
+                                                           </select>
+                                                          </td>
+                                                          <td>
+                                                          <input type="date" id="date"  name="date" class="form-control"  required/>
+                                                          </td>
+                                                         
+                                                       </tr>
+                                                       </tbody>
+                                                       </table>
+                                                    </div>
+                                                </div>
+                                          <div class="form-group" >  
+                                           <div class="col-sm-9 col-sm-offset-2">	
+                                                   
+                                             <div class="row" >
+                                             <div class="col-sm-4"></div>
+                                             <div class="col-sm-4">
+                                             <div class="tile-stats tile-gray">
+                                             <div class="icon"><i class="entypo-chart-area"></i></div>
+                                             <h3 style="color: #34495e;text-align: center;">Attendance For Employee</h3>
+                                             <h4 style="color: #34495e;text-align: center;">Section</h4>
+                                             <h4 style="color:#34495e;"></h4>
+                                             </div>
+                                            </div>
+                                            <div class="col-sm-4"></div>
+                                            </div>
+                                            <br><br>
+        
+        
+                                         <center>
+                                         <a class="btn btn-default present">
+                                             <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                             Mark All Present
+                                         </a>
+                                         <a class="btn btn-default absent">
+                                             <i class="fa fa-times" aria-hidden="true"></i> 
+                                             Mark All Absent
+                                         </a>
+                                      </center>
+                                     <br><br>
+        
+        
+        
+                                    <div id="attendance_update">
+                                     <table class="table table-bordered">
+                                           <thead>
+                                             <tr>
+                                              <th>Employee Code</th>
+                                              <th>Employee Name</th>
+                                              <th>29-03-2019</th>
+                
+                                             </tr>
+                                            </thead>
+                                           <tbody id="employee_data">
+               
+                                          </tbody>
+                                     </table>
+                                    </div>    
+                                   </div>
+                                   </div>
+        
+                        
+
+
+                        </div>
+                 
+                </form>
+              </div>
+                </div>
+              </div>
+              <!-- END ALERTS PORTLET-->
+            </div>
+
+</div>
+
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+            <!-- END CONTENT -->
+            <!-- BEGIN QUICK SIDEBAR -->{% endblock %}
