@@ -1,5 +1,5 @@
 {% extends 'backend/base.html' %}
-{% block title %}Create Employee{% endblock title %}
+{% block title %}Attendance Report{% endblock title %}
 {% block content %}
 <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
@@ -9,22 +9,22 @@
             <!-- END THEME PANEL -->
             <!-- BEGIN PAGE BAR -->
             <h3 class="page-title">
-                Order View <small>view order details</small>
+                Attendance Report <small>view attendance report details</small>
                 </h3>
                 <div class="page-bar">
                     <ul class="page-breadcrumb">
-                        <li>
-                            <i class="fa fa-home"></i>
-                            <a href="index.html">Home</a>
-                            <i class="fa fa-angle-right"></i>
-                        </li>
-                        <li>
-                            <a href="#">eCommerce</a>
-                            <i class="fa fa-angle-right"></i>
-                        </li>
-                        <li>
-                            <a href="#">Order View</a>
-                        </li>
+                      <li>
+                        <i class="fa fa-home"></i>
+                        <a href="{% url 'home' %}">Home</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="{% url 'atttendance_report' %}">Attendance Report</a>
+                        <i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="#">Add Attendance</a>
+                    </li>
                     </ul>
                   
                 </div>
