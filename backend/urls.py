@@ -39,11 +39,13 @@ urlpatterns = [
     path('add_leave_update/<int:pk>',views.add_leave_update,name="add_leave_update"),
     
     path('general_settings/<int:pk>',views.generalsettingsView,name="general_settings"),
-
+    path('get_employee_data',views.getEmployeeData,name='get_employee_data'),
     path('get_attendance',views.getAttendance,name="get_attendance"),
+
     path('total_employee',views.totalEmployeeReport,name="total_employee"),
     path('total_attendance',views.totalAttendanceReport,name="total_attendance"),
-    path('get_employee_data',views.getEmployeeData,name='get_employee_data')
+    path('get_employee_for_report',views.totalEmployeeReport,name='get_employee_for_report')
+   
 
 
 
