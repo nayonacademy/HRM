@@ -499,7 +499,41 @@ def generalsettingsView(request,pk):
 
 #End generalsettings method
 def totalEmployeeReport(request):
-        return render(request,'backend/reports/total_employee_report.html')
+        # return HttpResponse('ok')
+        if request.method == 'POST':
+                branch_name = request.POST.get('branch_name', None)
+                department = request.POST.get('department', None)
+               
+                today = date.today()
+                employee_data=EmployeePersonalModel.objects.all()
+                if branch_name:
+                       employee_data=EmployeePersonalModel.objects.filter(branch=branch_name)
+                if department:
+                        employee_data=EmployeePersonalModel.objects.filter(department=department)
+                if branch_name and department:
+                        employee_data=EmployeePersonalModel.objects.filter(branch=branch_name,department=department)
+               
+                count = employee_data.count()
+                context = {
+                     
+                        'values':request.POST,
+                        'employee_data': employee_data,
+                        'today': today,
+                        'count': count
+
+                        }
+                return render(request, 'backend/reports/total_employee_report.html',context);
+
+        else:
+                department=DepartmentModel.objects.all()
+                branch=BranchModel.objects.all()
+        context={
+                'department':department,
+                'branch':branch
+
+        }
+        return render(request,'backend/reports/employee_report_header.html',context)
+        # return render(request,'backend/reports/employee_report_header.html')
 def totalAttendanceReport(request):
         return HttpResponse('ok')                       
 def getEmployeeData(request):
@@ -507,7 +541,7 @@ def getEmployeeData(request):
         employee_data=EmployeePersonalModel.objects.filter(employee_code=get_employee_code)
         value=serializers.serialize('json',employee_data)
         return HttpResponse(value,content_type="application/json")
-        
+    
 
                                  
 
