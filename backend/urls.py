@@ -48,7 +48,8 @@ urlpatterns = [
 
     path('total_employee',views.totalEmployeeReport,name="total_employee"),
     path('total_attendance',views.totalAttendanceReport,name="total_attendance"),
-    path('get_employee_for_report',views.totalEmployeeReport,name='get_employee_for_report')
+    path('get_employee_for_report',views.totalEmployeeReport,name='get_employee_for_report'),
+    path('employee_view/<int:pk>',views.employeeView,name="employee_view")
    
 
 

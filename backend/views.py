@@ -18,6 +18,7 @@ from .forms.settings_form import SettingsForm
 import os
 # Create your views here.
 #Start login method
+
 def hrmlogin(request):
         if request.method=='GET':  
                 return render(request,'backend/login.html')
@@ -62,13 +63,13 @@ def branchView(request):
                 'branch':branch_all_data
         }        
         return render(request,'backend/branch/branch.html',context) 
-
+@login_required
 def branch_delete(request,pk):
         branch_delete_data=get_object_or_404(BranchModel,pk=pk)
         branch_delete_data.delete()
         messages.info(request,'Branch Deleted')
         return HttpResponseRedirect(reverse('branch')) 
-
+@login_required
 def branch_update(request,pk):
         branch_edit_data=get_object_or_404(BranchModel,pk=pk)
         if request.method == 'POST':
@@ -104,13 +105,13 @@ def departmentView(request):
                 'department':department_all_data
         }        
         return render(request,'backend/department/department.html',context) 
-
+@login_required
 def department_delete(request,pk):
         department_delete_data=get_object_or_404(DepartmentModel,pk=pk)
         department_delete_data.delete()
         messages.info(request,'Department Deleted')
         return HttpResponseRedirect(reverse('department')) 
-
+@login_required
 def department_update(request,pk):
         department_edit_data=get_object_or_404(DepartmentModel,pk=pk)
         if request.method == 'POST':
@@ -148,13 +149,13 @@ def designationView(request):
                 'designation':designation_all_data
         }        
         return render(request,'backend/designation/designation.html',context) 
-
+@login_required
 def designation_delete(request,pk):
         designation_delete_data=get_object_or_404(DesignationModel,pk=pk)
         designation_delete_data.delete()
         messages.info(request,'designation Deleted')
         return HttpResponseRedirect(reverse('designation')) 
-
+@login_required
 def designation_update(request,pk):
         designation_edit_data=get_object_or_404(DesignationModel,pk=pk)
         if request.method == 'POST':
@@ -186,7 +187,8 @@ def employeeReportView(request):
 
 #End Designation method 
 
-#Start Employee method    
+#Start Employee method 
+@login_required   
 def employeeAddView(request):
         if request.method == 'POST':
                  basic_info=EmployeePersonalForm(request.POST,request.FILES)
@@ -258,7 +260,7 @@ def employeeAddView(request):
         }
         return render(request,'backend/employee/createemployee.html',context)
 
-
+@login_required
 def employeeDesination(request):
         department=request.POST.get('department')
         designation=DesignationModel.objects.filter(department_name=department)
@@ -286,13 +288,13 @@ def transfer(request):
                 'transfer':transfer_all_data
         }        
         return render(request,'backend/employee/transfer.html',context)
-
+@login_required
 def transfer_delete(request,pk):
         transfer_delete_data=get_object_or_404(TransferModel,pk=pk)
         transfer_delete_data.delete()
         messages.info(request,'Transfer Deleted')
         return HttpResponseRedirect(reverse('transfer')) 
-
+@login_required
 def transfer_update(request,pk):
         transfer_edit_data=get_object_or_404(TransferModel,pk=pk)
         if request.method == 'POST':
@@ -322,6 +324,7 @@ def atttendanceReportView(request):
                 'department':department
         }
         return render(request,'backend/attendance/attendance_report.html',context)
+@login_required        
 def addAttendanceView(request):
         # return HttpResponse('ok')
         return render(request,'backend/attendance/add_attendance.html')
@@ -376,7 +379,7 @@ def addAttendanceView(request):
                 'attendance_form':attendance_form
         }               
         return render(request,'backend/attendance/add_attendance.html',context)
-
+@login_required
 def getEmployee(request):
         department=request.POST.get('department');
         employee_data=EmployeePersonalModel.objects.filter(department=department)
@@ -403,14 +406,14 @@ def leaveTypeView(request):
                 'leave_type':leave_type_all_data
         }        
         return render(request,'backend/leave/leave_type.html',context) 
-
+@login_required
 def leave_type_delete(request,pk):
         leave_type_delete_data=get_object_or_404(LeaveTypeModel,pk=pk)
         leave_type_delete_data.delete()
 
         messages.info(request,'leave Type Deleted')
         return HttpResponseRedirect(reverse('leave_type')) 
-
+@login_required
 def leave_type_update(request,pk):
         leave_type_edit_data=get_object_or_404(LeaveTypeModel,pk=pk)
         if request.method == 'POST':
@@ -447,13 +450,13 @@ def addLeaveView(request):
                 'add_leave':add_leave_all_data
         }        
         return render(request,'backend/leave/add_leave.html',context) 
-
+@login_required
 def add_leave_delete(request,pk):
         add_leave_delete_data=get_object_or_404(AddLeaveModel,pk=pk)
         add_leave_delete_data.delete()
         messages.info(request,'leave Deleted')
         return HttpResponseRedirect(reverse('add_leave')) 
-
+@login_required
 def add_leave_update(request,pk):
         add_leave_edit_data=get_object_or_404(AddLeaveModel,pk=pk)
         if request.method == 'POST':
@@ -498,6 +501,7 @@ def generalsettingsView(request,pk):
         
 
 #End generalsettings method
+@login_required
 def totalEmployeeReport(request):
         # return HttpResponse('ok')
         if request.method == 'POST':
@@ -533,16 +537,23 @@ def totalEmployeeReport(request):
 
         }
         return render(request,'backend/reports/employee_report_header.html',context)
-        # return render(request,'backend/reports/employee_report_header.html')
+@login_required
 def totalAttendanceReport(request):
-        return HttpResponse('ok')                       
+        return HttpResponse('ok') 
+@login_required                              
 def getEmployeeData(request):
         get_employee_code=request.POST.get('employee_code')
         employee_data=EmployeePersonalModel.objects.filter(employee_code=get_employee_code)
         value=serializers.serialize('json',employee_data)
         return HttpResponse(value,content_type="application/json")
     
-
+@login_required
+def employeeView(request,pk):
+        employee_personal=get_object_or_404(EmployeePersonalModel,pk=pk)
+        context={
+                'employee_personal':employee_personal
+        }
+        return render(request,'backend/employee/employee_view.html',context)
                                  
 
 

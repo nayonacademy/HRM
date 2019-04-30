@@ -150,11 +150,11 @@
                                             <td> <img src="{{data_fetch.photo.url}}" style="width: 42px; height: 44px;"/></td>
 
                                             <td>
-                                                    <a href="" class="btn green mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
+                                                    <a href="{% url 'employee_view' data_fetch.pk  %}" class="btn green mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
                                                         <span class="ladda-label">View</span>
                                                     <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>
                                                     </a>
-                                                    <a href=""
+                                                    <!-- <a href=""
                                                     class="btn purple mt-ladda-btn ladda-button btn-circle" data-style="slide-left">
                                                         <span class="ladda-label">Edit</span>
                                                     <span class="ladda-spinner"></span>
@@ -165,7 +165,7 @@
                                                     class="btn red mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
                                                         <span class="ladda-label">Delete</span>
                                                     <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>
-                                                    </a>
+                                                    </a> -->
                                                    
                                                 </td>
                                         </tr>

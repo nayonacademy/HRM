@@ -1,5 +1,5 @@
 {% extends 'backend/base.html' %}
-{% block title %}Leave{% endblock title %}
+{% block title %}Employee Report{% endblock title %}
 {% block content %}
 {% load static %}
 <div class="page-content-wrapper">
@@ -10,22 +10,20 @@
         <!-- END THEME PANEL -->
         <!-- BEGIN PAGE BAR -->
         <h3 class="page-title">
-            Order View <small>view order details</small>
+            Employee Report <small>view employee report details</small>
             </h3>
             <div class="page-bar">
                 <ul class="page-breadcrumb">
                     <li>
                         <i class="fa fa-home"></i>
-                        <a href="index.html">Home</a>
+                        <a href="{% url 'home' %}">Home</a>
                         <i class="fa fa-angle-right"></i>
                     </li>
                     <li>
-                        <a href="#">eCommerce</a>
+                        <a href="{% url 'total_employee' %}">Employee Report</a>
                         <i class="fa fa-angle-right"></i>
                     </li>
-                    <li>
-                        <a href="#">Order View</a>
-                    </li>
+                    
                 </ul>
               
             </div>
