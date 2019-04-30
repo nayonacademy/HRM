@@ -1,5 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse,HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
 from django.contrib import messages
 from .models import *
@@ -15,12 +17,35 @@ from .forms.attendance_form import AttendanceForm
 from .forms.settings_form import SettingsForm
 import os
 # Create your views here.
+#Start login method
+def hrmlogin(request):
+        if request.method=='GET':  
+                return render(request,'backend/login.html')
+        elif request.method=='POST':
+                username = request.POST.get('username',None)
+                password = request.POST.get('password',None)
+                user = authenticate(username=username,password=password)
+                if user is not None:
+                        login(request,user)
+                        return HttpResponseRedirect(reverse("home"))
+                else:
+                        return HttpResponseRedirect(reverse("login"))
+
+@login_required
+def hrmlogout(request):
+        logout(request)
+        messages.success(request, 'Logged Out Successfully')
+        return HttpResponseRedirect(reverse('login'))
+#End login method
 # Start home method
+@login_required
 def homeView(request):
-    return render(request,'backend/index.html')
+        if request.method =='GET':
+                return render(request,'backend/index.html')
 # End home method  
 
-#Start Branch method    
+#Start Branch method
+@login_required    
 def branchView(request):
         branch_all_data= BranchModel.objects.all()
         if request.method =='POST':
@@ -61,7 +86,8 @@ def branch_update(request,pk):
         return render(request,'backend/branch/branch_edit.html',context)
 #End Branch method 
 
-#Start Department method    
+#Start Department method 
+@login_required   
 def departmentView(request):
         department_all_data=DepartmentModel.objects.all()
         if request.method =='POST':
@@ -105,6 +131,7 @@ def department_update(request,pk):
 
 
 #Start Designation method    
+@login_required
 def designationView(request):
         designation_all_data=DesignationModel.objects.all()
         if request.method =='POST':
@@ -147,6 +174,7 @@ def designation_update(request,pk):
 
 
 #Start Designation method    
+@login_required
 def employeeReportView(request):
         employee_data=EmployeePersonalModel.objects.all()
         context={
@@ -241,6 +269,7 @@ def employeeDesination(request):
 #End Employee method
 
 #Start transfer method
+@login_required
 def transfer(request):
         transfer_all_data= TransferModel.objects.all()
         if request.method =='POST':
@@ -286,6 +315,7 @@ def transfer_update(request,pk):
 
 
 # start attendance report method
+@login_required
 def atttendanceReportView(request):
         department=DepartmentModel.objects.all()
         context={
@@ -301,6 +331,7 @@ def addAttendanceView(request):
                 'department':department
         }
         return render(request,'backend/attendance/attendance_report.html',context)
+@login_required
 def getAttendance(request):
         department=request.POST.get('department')
         date=request.POST.get('date')
@@ -308,7 +339,8 @@ def getAttendance(request):
         attendance_data=AttendanceChildModel.objects.filter(attendance=parent_data.pk)
         serialize_data=serializers.serialize('json',attendance_data)
         return HttpResponse(serialize_data,content_type='application/json') 
-      
+
+@login_required   
 def addAttendanceView(request):
         # department=DepartmentModel.objects.all()
         if request.method == "POST":
@@ -353,7 +385,8 @@ def getEmployee(request):
 
 
 
-# Start Leavetype method        
+# Start Leavetype method   
+@login_required      
 def leaveTypeView(request):
         leave_type_all_data= LeaveTypeModel.objects.all()
         if request.method =='POST':
@@ -397,6 +430,7 @@ def leave_type_update(request,pk):
 #End Leavetype method
 
 #Start AddLeave method
+@login_required
 def addLeaveView(request):
         add_leave_all_data= AddLeaveModel.objects.all()
         if request.method =='POST':
@@ -438,7 +472,7 @@ def add_leave_update(request,pk):
 
 #End AddLeave method
 #Start generalsettings method
-
+@login_required
 def generalsettingsView(request,pk):
         settings_data=get_object_or_404(SettingsModel,pk=pk)
         old_file = settings_data.logo

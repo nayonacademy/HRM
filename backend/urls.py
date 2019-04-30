@@ -1,6 +1,10 @@
 from django.urls import path
 from . import views
 urlpatterns = [
+    
+    path("login",views.hrmlogin,name='login'),
+    path("logout",views.hrmlogout,name='logout'),
+
     path('',views.homeView,name="home"),
 
     path('branch',views.branchView,name="branch"),
