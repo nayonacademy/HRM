@@ -97,6 +97,6 @@ local_settings.py
 .DS_Store
 
 .env
+db.sqbpro
 
-*db.sqlite3
-*.sqlite3
+
