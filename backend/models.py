@@ -57,7 +57,7 @@ class EmployeePersonalModel(models.Model):
         return self.employee_name
 # Employee Contact Model
 class EmployeeContactModel(models.Model):
-    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.DO_NOTHING)
+    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.CASCADE)
     contact_number=models.CharField(max_length=30)
     contact_email=models.CharField(max_length=50)
     present_address=models.TextField()
@@ -68,7 +68,7 @@ class EmployeeContactModel(models.Model):
         return self.contact_email
  # Employee Bank Model      
 class EmployeeBankModel(models.Model):
-    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.DO_NOTHING)
+    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.CASCADE)
     account_no=models.CharField(max_length=50)
     bank_name=models.CharField(max_length=40)
     branch_name=models.CharField(max_length=40)
@@ -78,7 +78,7 @@ class EmployeeBankModel(models.Model):
         return self.bank_name
  # Employee Joining Model        
 class EmployeeJoiningModel(models.Model):
-    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.DO_NOTHING)
+    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.CASCADE)
     date_of_joining=models.DateTimeField(auto_now=False, auto_now_add=False)
     offer_date=models.DateTimeField(auto_now=False, auto_now_add=False)
     confirmation_date=models.DateTimeField(auto_now=False, auto_now_add=False)
@@ -88,7 +88,7 @@ class EmployeeJoiningModel(models.Model):
         return self.date_of_joining
  # Employee Qualification Model         
 class EmployeeQualificationModel(models.Model):
-    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.DO_NOTHING)
+    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.CASCADE)
     name_of_exam=models.CharField(max_length=40)
     year_of_passing=models.CharField(max_length=30)
     board=models.CharField(max_length=30)
@@ -99,7 +99,7 @@ class EmployeeQualificationModel(models.Model):
         return self.name_of_exam
  # Employee Previouswork Model        
 class EmployeePreviousworkModel(models.Model):  
-    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.DO_NOTHING)
+    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.CASCADE)
     company_name=models.CharField(max_length=40)
     company_address=models.CharField(max_length=30)
     designation=models.CharField(max_length=30)
@@ -110,7 +110,7 @@ class EmployeePreviousworkModel(models.Model):
         return self.company_name
  # Employee Personalbio Model        
 class EmployeePersonalbioModel(models.Model):  
-    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.DO_NOTHING)
+    emplyee_id=models.ForeignKey(EmployeePersonalModel,on_delete=models.CASCADE)
     cv_file=models.ImageField(upload_to='emplyee_document/', default='emplyee_document/no-image.png')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)

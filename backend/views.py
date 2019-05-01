@@ -566,6 +566,29 @@ def employeeView(request,pk):
         return render(request,'backend/employee/employee_view.html',context)
                                  
 
-
+def employeeDelete(request,pk):
+        basic_info=get_object_or_404(EmployeePersonalModel,pk=pk)
+        if basic_info.photo:
+                if os.path.isfile(basic_info.photo.path):
+                        os.remove(basic_info.photo.path)
+        employee_contact=get_object_or_404(EmployeeContactModel,pk=pk)
+        qualification=EmployeeQualificationModel.objects.filter(pk=pk)
+        work_experience=EmployeePreviousworkModel.objects.filter(pk=pk)
+        joining_info=get_object_or_404(EmployeeJoiningModel,pk=pk)
+        bank_info=get_object_or_404(EmployeeBankModel,pk=pk)
+        bio_info=get_object_or_404(EmployeePersonalbioModel,pk=pk)
+        if bio_info.cv_file:
+                if os.path.isfile(bio_info.cv_file.path):
+                        os.remove(bio_info.cv_file.path)
+        basic_info.delete()
+        employee_contact.delete()
+        joining_info.delete()
+        bank_info.delete()
+        bio_info.delete()
+        qualification.delete()
+        work_experience.delete()
+        messages.info(request,'Delete Operation Successfull')
+        return HttpResponseRedirect(reverse('employee'))      
+          
 
 

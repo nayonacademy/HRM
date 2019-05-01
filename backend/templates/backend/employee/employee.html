@@ -159,14 +159,13 @@
                                                         <span class="ladda-label">Edit</span>
                                                     <span class="ladda-spinner"></span>
                                                     </a>
+                                                   -->
                                                    
-                                                   
-                                                    <a href="" onclick="return confirm('Are You Sure?')" 
+                                                    <a href="{% url 'employee_delete' data_fetch.pk  %}" onclick="return confirm('Are You Sure?')" 
                                                     class="btn red mt-ladda-btn ladda-button btn-circle" data-style="slide-right">
                                                         <span class="ladda-label">Delete</span>
                                                     <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>
-                                                    </a> -->
-                                                   
+                                                    </a> 
                                                 </td>
                                         </tr>
                                         {% endfor %}
