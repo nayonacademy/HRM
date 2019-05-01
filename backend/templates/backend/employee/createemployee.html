@@ -286,14 +286,6 @@
                                     </div>
                                     <hr>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label" for="{{joining_info.date_of_joining.label_for_id}}">{{joining_info.date_of_joining.label}}</label>
-                                            <div class="col-md-8">
-                                                {{joining_info.date_of_joining}}
-                                                <span class="text-danger">{{joining_info.date_of_joining.errors}}</span>
-                                        </div>
-                                     </div>  
-                               
-                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="{{joining_info.offer_date.label_for_id}}">{{joining_info.offer_date.label}}</label>
                                             <div class="col-md-8">
                                                 {{joining_info.offer_date}}
@@ -307,6 +299,15 @@
                                                 <span class="text-danger">{{joining_info.confirmation_date.errors}}</span>
                                         </div>
                                      </div> 
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="{{joining_info.date_of_joining.label_for_id}}">{{joining_info.date_of_joining.label}}</label>
+                                            <div class="col-md-8">
+                                                {{joining_info.date_of_joining}}
+                                                <span class="text-danger">{{joining_info.date_of_joining.errors}}</span>
+                                        </div>
+                                     </div>  
+                               
+                                
                                        
                                      
                               
@@ -541,6 +542,7 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
+    
       var max_fields      = 10; //maximum input boxes allowed
       var wrapper         = $(".input_fields_wrap2"); //Fields wrapper
       var add_button      = $(".add_field_button2"); //Add button ID
@@ -564,7 +566,6 @@
                             </td>\
                             <td>\
                                 <input type=\"text\" style='margin-left:26px;width: 144px;' id=\"duration\"  name=\"duration[]\" class=\"form-control input-circle\" placeholder=\"Degree Name\" required/>\
-
                             </td>\
                             </tr>\
                             <button class='btn btn-danger remove_field2' style='width: 40px;margin-left: 670px;margin-bottom: -28px;'><i class=\"fa fa-trash\"></i></button>\
@@ -579,7 +580,7 @@
       $(wrapper).on("click",".remove_field2", function(e){ //user click on remove text
           e.preventDefault(); $(this).parent('div').remove(); x--;
       })
-   
+
       $('#designation').html('<option>First Select Departement</option>');
 
       $('#department').change(function(){

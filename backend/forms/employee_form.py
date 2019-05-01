@@ -7,7 +7,7 @@ class EmployeePersonalForm(forms.ModelForm):
         fields = '__all__'
         choices=(('','--Select--'),('Active','Active'),('Inactive','Inactive'))
         gender=(('','--Select--'),('Female','Female'),('Male','Male'))
-        religion=(('','--Select--'),('Islam','Islam'),('Hindu','Hindu'))
+        religion=(('','--Select--'),('Islam','Islam'),('Hinduism','Hinduism'),('Christianity','Christianity'),('Buddhism','Buddhism'))
         marital_status=(('','--Select--'),('Unmarried','Unmarried'),('Married','Married'))
         blood_group=(('','--Select--'),('O+','O+'),('O-','O-'),('A+','A+'),('A-','A-'),('B+','B+'),('B-','B-'),('AB+','AB+'),('AB-','AB-'))
         widgets={
