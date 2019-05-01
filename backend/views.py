@@ -550,8 +550,18 @@ def getEmployeeData(request):
 @login_required
 def employeeView(request,pk):
         employee_personal=get_object_or_404(EmployeePersonalModel,pk=pk)
+        employee_contact=get_object_or_404(EmployeeContactModel,pk=pk)
+        qualification=EmployeeQualificationModel.objects.filter(pk=pk)
+        work_experience=EmployeePreviousworkModel.objects.filter(pk=pk)
+        joining_info=get_object_or_404(EmployeeJoiningModel,pk=pk)
+        bank_info=get_object_or_404(EmployeeBankModel,pk=pk)
         context={
-                'employee_personal':employee_personal
+                'employee_personal':employee_personal,
+                'employee_contact':employee_contact,
+                'qualification':qualification,
+                'work_experience':work_experience,
+                'joining_info':joining_info,
+                'bank_info':bank_info
         }
         return render(request,'backend/employee/employee_view.html',context)
                                  
