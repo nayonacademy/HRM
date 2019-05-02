@@ -659,10 +659,9 @@ def employeeEdit(request,pk):
                                                                          previouswork.save()
                                                 if file_of_cv:
                                                         new_file=request.FILES.get('cv_file')
-                                                        if os.path.isfile(old_file.path):
-                                                                os.remove(old_file.path)
+                                                        if os.path.isfile(old_cv_file.path):
+                                                                os.remove(old_cv_file.path)
                                                         bio_info.delete()
-                                                        # if not old_cv_file == new_file:
                                                         bio_info_update=EmployeePersonalbioModel()
                                                         bio_info_update.emplyee_id=get_pk
                                                         bio_info_update.cv_file=file_of_cv
