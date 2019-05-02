@@ -550,11 +550,12 @@ def getEmployeeData(request):
 @login_required
 def employeeView(request,pk):
         employee_personal=get_object_or_404(EmployeePersonalModel,pk=pk)
-        employee_contact=get_object_or_404(EmployeeContactModel,pk=pk)
-        qualification=EmployeeQualificationModel.objects.filter(pk=pk)
-        work_experience=EmployeePreviousworkModel.objects.filter(pk=pk)
-        joining_info=get_object_or_404(EmployeeJoiningModel,pk=pk)
-        bank_info=get_object_or_404(EmployeeBankModel,pk=pk)
+        employee_contact=get_object_or_404(EmployeeContactModel,emplyee_id=pk)
+        qualification=EmployeeQualificationModel.objects.filter(emplyee_id=pk)
+        work_experience=EmployeePreviousworkModel.objects.filter(emplyee_id=pk)
+        joining_info=get_object_or_404(EmployeeJoiningModel,emplyee_id=pk)
+        bank_info=get_object_or_404(EmployeeBankModel,emplyee_id=pk)
+        print(qualification)
         context={
                 'employee_personal':employee_personal,
                 'employee_contact':employee_contact,
@@ -571,12 +572,12 @@ def employeeDelete(request,pk):
         if basic_info.photo:
                 if os.path.isfile(basic_info.photo.path):
                         os.remove(basic_info.photo.path)
-        employee_contact=get_object_or_404(EmployeeContactModel,pk=pk)
-        qualification=EmployeeQualificationModel.objects.filter(pk=pk)
-        work_experience=EmployeePreviousworkModel.objects.filter(pk=pk)
-        joining_info=get_object_or_404(EmployeeJoiningModel,pk=pk)
-        bank_info=get_object_or_404(EmployeeBankModel,pk=pk)
-        bio_info=get_object_or_404(EmployeePersonalbioModel,pk=pk)
+        employee_contact=get_object_or_404(EmployeeContactModel,emplyee_id=pk)
+        qualification=EmployeeQualificationModel.objects.filter(emplyee_id=pk)
+        work_experience=EmployeePreviousworkModel.objects.filter(emplyee_id=pk)
+        joining_info=get_object_or_404(EmployeeJoiningModel,emplyee_id=pk)
+        bank_info=get_object_or_404(EmployeeBankModel,emplyee_id=pk)
+        bio_info=get_object_or_404(EmployeePersonalbioModel,emplyee_id=pk)
         if bio_info.cv_file:
                 if os.path.isfile(bio_info.cv_file.path):
                         os.remove(bio_info.cv_file.path)
@@ -589,6 +590,110 @@ def employeeDelete(request,pk):
         work_experience.delete()
         messages.info(request,'Delete Operation Successfull')
         return HttpResponseRedirect(reverse('employee'))      
-          
+def employeeEdit(request,pk):
+        basic_data_get = get_object_or_404(EmployeePersonalModel,pk=pk)
+        contact_info_get=get_object_or_404(EmployeeContactModel,emplyee_id=pk)
+        bank_info_get=get_object_or_404(EmployeeBankModel,emplyee_id=pk)
+        joining_info_get=get_object_or_404(EmployeeJoiningModel,emplyee_id=pk)
+        old_file = basic_data_get.photo
+        qualification_data=EmployeeQualificationModel.objects.filter(emplyee_id=pk)
+        work_experience_data=EmployeePreviousworkModel.objects.filter(emplyee_id=pk)
+        bio_info=get_object_or_404(EmployeePersonalbioModel,emplyee_id=pk)
+        old_cv_file=bio_info.cv_file
+        contact_info=FormContact(request.POST or None,instance=contact_info_get)
+        bank_info=BankForm(request.POST or None,instance=bank_info_get)
+        joining_info=EmployeeJoiningForm(request.POST or None,instance=joining_info_get)
+        name_of_exam=request.POST.getlist('name_of_exam[]')
+        year_of_passing=request.POST.getlist('year_of_passing[]')
+        board=request.POST.getlist('board[]')
+        grade=request.POST.getlist('grade[]')
+        company_name=request.POST.getlist('company_name[]')
+        company_address=request.POST.getlist('company_address[]')
+        designation=request.POST.getlist('designation[]')
+        duration=request.POST.getlist('duration[]')
+        file_of_cv= request.FILES.get('cv_file')
+        if request.method == 'POST':
+                basic_info=EmployeePersonalForm(request.POST,request.FILES,instance=basic_data_get)
+                if basic_info.is_valid():
+                        if request.FILES:
+                                new_file=request.FILES.get('photo')
+                                if not old_file == new_file:
+                                        if os.path.isfile(old_file.path):
+                                                os.remove(old_file.path)
+                        get_pk = basic_info.save()
+                        qualification_data.delete()
+                        work_experience_data.delete() 
+                        contact_save = contact_info.save(commit=False)
+                        bank_save = bank_info.save(commit=False)
+                        joining_save= joining_info.save(commit=False)
+                        contact_save.emplyee_id=get_pk
+                        bank_save.emplyee_id=get_pk
+                        joining_save.emplyee_id=get_pk
+                        if contact_info.is_valid():
+                                contact_save.save()
+                                if bank_info.is_valid():
+                                        bank_save.save()
+                                        if joining_info.is_valid():
+                                                joining_save.save()
+                                                
+                                                if name_of_exam and year_of_passing and  board and grade:
+                                                         if len(name_of_exam) !=0:
+                                                                 for i in range(len(name_of_exam)):
+                                                                         qualification=EmployeeQualificationModel()
+                                                                         qualification.emplyee_id=get_pk
+                                                                         qualification.name_of_exam=name_of_exam[i]
+                                                                         qualification.year_of_passing=year_of_passing[i]
+                                                                         qualification.board=board[i]
+                                                                         qualification.grade=grade[i]
+                                                                         qualification.save()
+                                                                      
+                                                if  company_name and  company_address and designation and duration:
+                                                         if len(company_name) !=0:
+                                                                 for j in range(len(company_name)):
+                                                                         previouswork=EmployeePreviousworkModel()
+                                                                         previouswork.emplyee_id=get_pk
+                                                                         previouswork.company_name=company_name[j] 
+                                                                         previouswork.company_address=company_address[j]
+                                                                         previouswork.designation=designation[j]
+                                                                         previouswork.duration=duration[j]
+                                                                         previouswork.save()
+                                                if file_of_cv:
+                                                        new_file=request.FILES.get('cv_file')
+                                                        if os.path.isfile(old_file.path):
+                                                                os.remove(old_file.path)
+                                                        bio_info.delete()
+                                                        # if not old_cv_file == new_file:
+                                                        bio_info_update=EmployeePersonalbioModel()
+                                                        bio_info_update.emplyee_id=get_pk
+                                                        bio_info_update.cv_file=file_of_cv
+                                                        bio_info_update.save()
+                                                       
+                                                messages.success(request,'Data Update Succsessfully')
+                                                return redirect('employee_edit', pk=pk)
+
+                                
+
+        
+               
+        else:
+                basic_info=EmployeePersonalForm(instance=basic_data_get)
+                contact_info=FormContact(instance=contact_info_get)
+                bank_info=BankForm(instance=bank_info_get)
+                joining_info=EmployeeJoiningForm(instance=joining_info_get)
+       
+        context={
+                'basic_info':basic_info,
+                'contact_info':contact_info,
+                'bank_info':bank_info,
+                'joining_info':joining_info,
+                'qualification':qualification_data,
+                'work_experience':work_experience_data,
+                'bio_info':bio_info,
+                'basic_data_get':basic_data_get
+        }
+        return render(request,'backend/employee/employee_edit.html',context)
+         
+
+        
 
 

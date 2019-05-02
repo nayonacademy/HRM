@@ -19,7 +19,7 @@ class EmployeePersonalForm(forms.ModelForm):
             'designation':forms.Select(attrs={'class':'form-control input-circle','id':'designation'}),
             'father_name':forms.TextInput(attrs={'class':'form-control input-circle','placeholder':'Father Name'}),
             'mother_name':forms.TextInput(attrs={'class':'form-control input-circle','placeholder':'Mother Name'}),
-            'date_of_birth':forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'}),
+            'date_of_birth':forms.DateInput(attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'}),
             'gender':forms.Select(attrs={'class':'form-control input-circle'},choices=gender),
             'national_id':forms.TextInput(attrs={'class':'form-control input-circle','placeholder':'National Id'}),
             'nationality':forms.TextInput(attrs={'class':'form-control input-circle','placeholder':'Nationality'}),
@@ -57,9 +57,9 @@ class EmployeeJoiningForm(forms.ModelForm):
         exclude = ("emplyee_id",)
         fields=('date_of_joining','offer_date','confirmation_date')
         widgets={
-           'date_of_joining':forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'}),
-           'offer_date':forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'}),
-           'confirmation_date':forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'})
+           'date_of_joining':forms.DateInput(attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'}),
+           'offer_date':forms.DateInput(attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'}),
+           'confirmation_date':forms.DateInput(attrs={'class':'form-control input-circle', 'placeholder':'Select a date', 'type':'date'})
            }
 
 # class EmployeeQualificationForm(forms.ModelForm):
