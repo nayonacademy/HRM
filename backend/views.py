@@ -693,6 +693,22 @@ def employeeEdit(request,pk):
         return render(request,'backend/employee/employee_edit.html',context)
          
 
+def DhashboardData(request):
+        all_data=[]
+        all_employee =EmployeePersonalModel.objects.all()
+        count_employee=all_employee.count()
+        count_department=DepartmentModel.objects.filter(department_status='Active').count()
+        count_branch=BranchModel.objects.filter(branch_status='Active').count()
+        count_designation=DesignationModel.objects.filter(designation_status='Active').count()
+        all_data.append(count_employee)
+        all_data.append(count_department)
+        all_data.append(count_branch)
+        all_data.append(count_designation)
+        return HttpResponse(all_data)
+        # serialize_data=serializers.serialize('json',all_data)
+        # return HttpResponse(serialize_data,content_type='application/json')
         
 
+
+   
 

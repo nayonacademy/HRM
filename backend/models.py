@@ -38,9 +38,9 @@ class DesignationModel(models.Model):
 class EmployeePersonalModel(models.Model):
     employee_code=models.CharField(max_length=100,unique=True)
     employee_name=models.CharField(max_length=100)
-    branch=models.ForeignKey(BranchModel,on_delete=models.DO_NOTHING, default=1)
-    department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1)
-    designation=models.ForeignKey(DesignationModel,on_delete=models.DO_NOTHING, default=1)
+    branch=models.ForeignKey(BranchModel,on_delete=models.CASCADE, default=1)
+    department=models.ForeignKey(DepartmentModel,on_delete=models.CASCADE, default=1)
+    designation=models.ForeignKey(DesignationModel,on_delete=models.CASCADE, default=1)
     father_name=models.CharField(max_length=100)
     mother_name=models.CharField(max_length=100)
     date_of_birth=models.DateTimeField(auto_now=False, auto_now_add=False)
@@ -143,7 +143,7 @@ class LeaveTypeModel(models.Model):
  # Add Leave Model        
 class AddLeaveModel(models.Model):
     employee_code=models.CharField(max_length=40) 
-    leave_type=models.ForeignKey(LeaveTypeModel,on_delete=models.DO_NOTHING, default=1)
+    leave_type=models.ForeignKey(LeaveTypeModel,on_delete=models.CASCADE, default=1)
     from_date=models.DateTimeField(auto_now=False, auto_now_add=False)
     to_date=models.DateTimeField(auto_now=False, auto_now_add=False)
     reason=models.TextField()
@@ -158,8 +158,8 @@ class TransferModel(models.Model):
     issue_date=models.DateTimeField(auto_now=False, auto_now_add=False)
     previous_branch=models.CharField(max_length=60)
     previous_department=models.CharField(max_length=60)
-    present_branch=models.ForeignKey(BranchModel,on_delete=models.DO_NOTHING, default=1)
-    present_department=models.ForeignKey(DepartmentModel,on_delete=models.DO_NOTHING, default=1) 
+    present_branch=models.ForeignKey(BranchModel,on_delete=models.CASCADE, default=1)
+    present_department=models.ForeignKey(DepartmentModel,on_delete=models.CASCADE, default=1) 
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True) 
 
