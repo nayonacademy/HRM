@@ -123,7 +123,7 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            <span  id='total_branch' data-value="1349">0</span>
+                            <span  data-counter="counterup"  id='total_branch' data-value="{{count_branch}}">{{count_branch}}</span>
                         </div>
                         <div class="desc"> Total Branch </div>
                     </div>
@@ -136,7 +136,7 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            <span id='total_department' >0 </div>
+                            <span id='total_department'  data-counter="counterup" data-value="{{count_department}}">{{count_department}} </div>
                         <div class="desc"> Total Department </div>
                     </div>
                 </a>
@@ -148,9 +148,9 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            <span  id='total_designation'>0</span>
+                            <span  id='total_designation'  data-counter="counterup" data-value="{{count_designation}}">{{count_designation}}</span>
                         </div>
-                        <div class="desc"> Total Designation</div>
+                        <div class="desc" > Total Designation</div>
                     </div>
                 </a>
             </div>
@@ -161,7 +161,7 @@
                     </div>
                     <div class="details">
                         <div class="number"> 
-                            <span id='total_employee'></span> </div>
+                            <span id='total_employee'  data-counter="counterup" data-value="{{count_employee}}">{{count_employee}}</span></div>
                         <div class="desc"> Total Employee </div>
                     </div>
                 </a>
@@ -275,7 +275,7 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 
@@ -303,5 +303,5 @@
                 });
             }, 2000);
   });
-  </script>
+  </script> -->
 {% endblock %}

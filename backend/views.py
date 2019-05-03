@@ -20,7 +20,7 @@ import os
 #Start login method
 
 def hrmlogin(request):
-        if request.method=='GET':  
+        if request.method=='GET':
                 return render(request,'backend/login.html')
         elif request.method=='POST':
                 username = request.POST.get('username',None)
@@ -42,7 +42,17 @@ def hrmlogout(request):
 @login_required
 def homeView(request):
         if request.method =='GET':
-                return render(request,'backend/index.html')
+                count_employee =EmployeePersonalModel.objects.all().count()
+                count_department=DepartmentModel.objects.filter(department_status='Active').count()
+                count_branch=BranchModel.objects.filter(branch_status='Active').count()
+                count_designation=DesignationModel.objects.filter(designation_status='Active').count()
+                context={
+                        'count_employee':count_employee,
+                        'count_department':count_department,
+                        'count_branch':count_branch,
+                        'count_designation':count_designation
+                }
+                return render(request,'backend/index.html',context)
 # End home method  
 
 #Start Branch method
