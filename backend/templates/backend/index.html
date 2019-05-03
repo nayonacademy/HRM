@@ -170,103 +170,62 @@
         <div class="clearfix"></div>
         <!-- END DASHBOARD STATS 1-->
         <div class="row">
+            
+           
             <div class="col-md-6 col-sm-6">
                 <!-- BEGIN PORTLET-->
                 <div class="portlet light bordered">
-                    <div class="portlet-title">
-                        <div class="caption">
-                            <i class="icon-bar-chart font-dark hide"></i>
-                            <span class="caption-subject font-dark bold uppercase">Site Visits</span>
-                            <span class="caption-helper">weekly stats...</span>
-                        </div>
-                        <div class="actions">
-                            <div class="btn-group btn-group-devided" data-toggle="buttons">
-                                <label class="btn red btn-outline btn-circle btn-sm active">
-                                    <input type="radio" name="options" class="toggle" id="option1">New</label>
-                                <label class="btn red btn-outline btn-circle btn-sm">
-                                    <input type="radio" name="options" class="toggle" id="option2">Returning</label>
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-bar-chart font-green-haze"></i>
+                                <span class="caption-subject bold uppercase font-green-haze"> Hrm Overview</span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="portlet-body">
-                        <div id="site_statistics_loading">
-                            <img src="{% static 'metronic/assets/global/img/loading.gif' %}" alt="loading" /> </div>
-                        <div id="site_statistics_content" class="display-none">
-                            <div id="site_statistics" class="chart"> </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END PORTLET-->
-            </div>
-            <div class="col-md-6 col-sm-6">
-                <!-- BEGIN PORTLET-->
-                <div class="portlet light bordered">
-                    <div class="portlet-title">
-                        <div class="caption">
-                            <i class="icon-share font-red-sunglo hide"></i>
-                            <span class="caption-subject font-dark bold uppercase">Revenue</span>
-                            <span class="caption-helper">monthly stats...</span>
-                        </div>
-                        <div class="actions">
-                            <div class="btn-group">
-                                <a href="" class="btn dark btn-outline btn-circle btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Filter Range
-                                    <span class="fa fa-angle-down"> </span>
+                            <div class="tools">
+                                <a href="javascript:;" class="collapse" data-original-title="" title="">
                                 </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li>
-                                        <a href="javascript:;"> Q1 2014
-                                            <span class="label label-sm label-default"> past </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> Q2 2014
-                                            <span class="label label-sm label-default"> past </span>
-                                        </a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="javascript:;"> Q3 2014
-                                            <span class="label label-sm label-success"> current </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> Q4 2014
-                                            <span class="label label-sm label-warning"> upcoming </span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+                                </a>
+                                <a href="javascript:;" class="reload" data-original-title="" title="">
+                                </a>
+                                <a href="javascript:;" class="fullscreen" data-original-title="" title="">
+                                </a>
+                                <a href="javascript:;" class="remove" data-original-title="" title="">
+                                </a>
                             </div>
                         </div>
-                    </div>
-                    <div class="portlet-body">
-                        <div id="site_activities_loading">
-                            <img src="{% static 'metronic/assets/global/img/loading.gif' %}" alt="loading" /> </div>
-                        <div id="site_activities_content" class="display-none">
-                            <div id="site_activities" style="height: 228px;"> </div>
-                        </div>
-                        <div style="margin: 20px 0 10px 30px">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                    <span class="label label-sm label-success"> Revenue: </span>
-                                    <h3>$13,234</h3>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                    <span class="label label-sm label-info"> Tax: </span>
-                                    <h3>$134,900</h3>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                    <span class="label label-sm label-danger"> Shipment: </span>
-                                    <h3>$1,134</h3>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
-                                    <span class="label label-sm label-warning"> Orders: </span>
-                                    <h3>235090</h3>
-                                </div>
-                            </div>
+                        <div class="portlet-body">
+                                <div id="piechart" style="width: 600px; height: 400px;"></div>
                         </div>
                     </div>
-                </div>
                 <!-- END PORTLET-->
             </div>
+            <div class="col-md-6 col-sm-6">
+                    <!-- BEGIN PORTLET-->
+                    <div class="portlet light bordered">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-green-haze"></i>
+                                    <span class="caption-subject bold uppercase font-green-haze">Branch Wise Employee Overview</span>
+                                </div>
+                                <div class="tools">
+                                    <a href="javascript:;" class="collapse" data-original-title="" title="">
+                                    </a>
+                                    <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+                                    </a>
+                                    <a href="javascript:;" class="reload" data-original-title="" title="">
+                                    </a>
+                                    <a href="javascript:;" class="fullscreen" data-original-title="" title="">
+                                    </a>
+                                    <a href="javascript:;" class="remove" data-original-title="" title="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                    <div id="chart_div" style="width: 600px; height: 400px;"></div>
+                            </div>
+                        </div>
+                    <!-- END PORTLET-->
+                </div>
         </div>
       
         
@@ -275,33 +234,70 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
 
-    $(document).ready(function(){
-   
-        setTimeout(function(){
-                $.ajax({
-                        url:"{% url 'dhashboard_data' %}",
-                        type:"POST",
-                        data:{
-                           
-                            'csrfmiddlewaretoken':"{{csrf_token}}"
-                        },
-                        success:function(data) {
-                            console.log(data);
-                            $('#total_branch').html(data[2]);
-                            $('#total_department').html(data[1]);
-                            $('#total_employee').html(data[0]);
-                            $('#total_designation').html(data[3]);
-                            
-                        }
+  function drawChart() {
 
-                });
-            }, 2000);
-  });
-  </script> -->
+    var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      ['Branch',     {{count_branch}}],
+      ['Department', {{count_department}}],
+      ['Designation', {{count_designation}}],
+      ['Employee', {{count_employee}}]
+    ]);
+
+    var options = {
+      title: 'Employee Branch Depratment Designation Overview'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+    chart.draw(data, options);
+  }
+  google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
+
+function drawBasic() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Motivation Level');
+
+      data.addRows([
+        [{v: [8, 0, 0], f: '8 am'}, 1],
+        [{v: [9, 0, 0], f: '9 am'}, 2],
+        [{v: [10, 0, 0], f:'10 am'}, 3],
+        [{v: [11, 0, 0], f: '11 am'}, 4],
+        [{v: [12, 0, 0], f: '12 pm'}, 5],
+        [{v: [13, 0, 0], f: '1 pm'}, 6],
+        [{v: [14, 0, 0], f: '2 pm'}, 7],
+        [{v: [15, 0, 0], f: '3 pm'}, 8],
+        [{v: [16, 0, 0], f: '4 pm'}, 9],
+
+      ]);
+
+      var options = {
+        title: 'Branch Wise Employee Overview',
+        hAxis: {
+          title: 'Time of Day',
+          format: 'h:mm a',
+          viewWindow: {
+            min: [7, 30, 0],
+            max: [17, 30, 0]
+          }
+        },
+        vAxis: {
+          title: 'Rating (scale of 1-10)'
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+</script>
 {% endblock %}

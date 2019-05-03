@@ -46,11 +46,14 @@ def homeView(request):
                 count_department=DepartmentModel.objects.filter(department_status='Active').count()
                 count_branch=BranchModel.objects.filter(branch_status='Active').count()
                 count_designation=DesignationModel.objects.filter(designation_status='Active').count()
+                branch=BranchModel.objects.filter(branch_status='Active')[:9]
+
                 context={
                         'count_employee':count_employee,
                         'count_department':count_department,
                         'count_branch':count_branch,
-                        'count_designation':count_designation
+                        'count_designation':count_designation,
+                        'branch':branch
                 }
                 return render(request,'backend/index.html',context)
 # End home method  
