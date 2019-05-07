@@ -337,17 +337,7 @@ def atttendanceReportView(request):
                 'department':department
         }
         return render(request,'backend/attendance/attendance_report.html',context)
-@login_required        
-def addAttendanceView(request):
-        # return HttpResponse('ok')
-        return render(request,'backend/attendance/add_attendance.html')
 
-        department=DepartmentModel.objects.all()
-        context={
-                'department':department
-        }
-        return render(request,'backend/attendance/attendance_report.html',context)
-@login_required
 def getAttendance(request):
         department=request.POST.get('department')
         date=request.POST.get('date')
